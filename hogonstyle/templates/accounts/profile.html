@@ -1,0 +1,180 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} محصولات | {% endblock %}
+
+{% block content %}
+    <body class="font-farsi overflow-x-hidden">
+    <div class="overlay"></div>
+    <div class="hover-overlay"></div>
+
+
+    <!-- logOut modal -->
+    <div class="modal w-3/12 p-4 lg:w-4/6 sm:w-10/12" id="logoutModal">
+        <div>
+            <h1 class="text-2xl">خروج از سایت</h1>
+            <p class="text-sm text-gray-700 mt-2">ایا میخواهید از پروفایل خود خارج شوید ؟</p>
+
+            <div class="mt-8 flex">
+                <button
+                        class="flex-grow btn btn--sm btn--primary border-2 border-gray-900 border-solid close-modal-btn static">
+                    انصراف
+                </button>
+
+                <button class="flex-grow btn btn--sm btn--secondary"><a href="{% url 'logout' %}">خروج</a></button>
+            </div>
+        </div>
+    </div>
+
+
+    <ul class="breadcrumb bg-gray-100 w-full p-3 container">
+        <li class="text-sm transition-colors hover:text-gray-500"><a href="{% url 'index' %}">هوگون</a></li>
+        <i class="breadcrumb-icon fa fa-angle-left"></i>
+        <li class="text-sm"><a>پروفایل</a></li>
+    </ul>
+
+    <!--main-->
+    <main class="container px-0 profile flex md:flex-col">
+        <div class="w-1/5 md:w-full">
+            <div class="bg-gray-100 pt-8">
+                <div class="flex flex-col items-center">
+                    <span class="text-9xl"><i class="fa fa-user-circle"></i></span>
+                    <h1 class="text-2xl font-bold">{{ user.username }}</h1>
+                </div>
+
+                <ul class="mt-4">
+                    <li><a href=" {% url 'profile' %} " class="sidebar-item active"><i
+                            class="text-3xl fa fa-user"></i>پرفایل</a></li>
+                    <li><a href=" {% url 'profile-orders' %} " class="sidebar-item"><i
+                            class="text-3xl fa fa-shopping-basket"></i>لیست
+                        سفارشات من</a></li>
+{#                    <li><a href=" {% url '' %} " class="sidebar-item"><i#}
+{#                            class="text-3xl fa fa-undo"></i>درخواست#}
+{#                        مرجوعی</a></li>#}
+                    <li><a href=" {% url 'profile-address' %} " class="sidebar-item"><i
+                            class="text-3xl fa fa-map-marked-alt"></i>آدرس‌های من</a></li>
+                    <li><a href=" {% url 'profile-password' %} " class="sidebar-item"><i
+                            class="text-3xl fa fa-lock-open"></i>تغییر
+                        رمز عبور</a></li>
+                    <li class="cursor-pointer" data-modal="logoutModal" onclick="showModal(event)"><a href="#"
+                                                                                                      class="sidebar-item pointer-events-none"><i
+                            class="text-3xl fa fa-times-circle"></i>خروج</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="w-4/5 md:w-full p-20 lg:p-4 space-y-4">
+            <form action="{% url 'profile-update' %}" method="post">
+                {% csrf_token %}
+
+                <div>
+                    <button type="button" class="btn--icon justify-between accordion-btn btn btn--md w-full !p-0">
+                        پروفایل
+                        <span class="hover:text-white hover:bg-gray-900 border-solid border-2 border-gray-900 py-4 px-6"><i
+                                class="fa fa-angle-down"></i></span>
+                    </button>
+
+                    <div class="acc-panel transition-all">
+                        <div class="py-2 text-justify">
+                            <div class="grid grid-cols-2 gap-4 gap-y-8 md:grid-cols-1">
+                                <label class="block">
+                                    <span class="input--label">نام</span>
+                                    <input type="text" name="first_name" class="form-input mt-1 block w-full"
+                                           placeholder="" value="{{ user.first_name }}">
+                                </label>
+
+                                <label class="block">
+                                    <span class="input--label">نام خوانوادگی</span>
+                                    <input type="text" name="last_name" class="form-input mt-1 block w-full"
+                                           placeholder="" value="{{ user.last_name }}">
+                                </label>
+
+
+                                <label class="block">
+                                    <span class="input--label">آدرس ایمیل</span>
+                                    <input type="email" name="email" class="form-input mt-1 block w-full"
+                                           value="{{ user.email }}">
+                                </label>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <button type="button" class="btn--icon justify-between accordion-btn btn btn--md w-full !p-0">
+                        ثبت اطلاعات بانکی
+                        <span class="hover:text-white hover:bg-gray-900 border-solid border-2 border-gray-900 py-4 px-6"><i
+                                class="fa fa-angle-down"></i></span>
+                    </button>
+                    <div class="acc-panel transition-all">
+                        <div class="py-2 text-justify">
+                            <div class="grid grid-cols-2 gap-4 gap-y-8 md:grid-cols-1">
+
+                                <label class="block">
+                                    <span class="input--label">نام صاحب حساب</span>
+                                    <input type="text" name="full_name_bank" class="form-input mt-1 block w-full"
+                                           placeholder="" value="{{ user.full_name_bank }}">
+                                </label>
+
+                                {#                <label class="block">#}
+                                {#                  <span class="input--label">اسم بانک</span>#}
+                                {#                  <select name="" class="form-input mt-1 block w-full">#}
+                                {#                    <option value="بانک ملی">بانک ملی</option>#}
+                                {#                    <option value="بانک صنعت و معدن">بانک صنعت و معدن</option>#}
+                                {#                    <option value="بانک کشاورزی">بانک کشاورزی</option>#}
+                                {#                    <option value="بانک مسکن">بانک مسکن</option>#}
+                                {#                    <option value="بانک توسعه صادرات ایران">بانک توسعه صادرات ایران</option>#}
+                                {#                    <option value="بانک توسعه تعاون">بانک توسعه تعاون</option>#}
+                                {#                    <option value="بانک اقتصاد نوین">بانک اقتصاد نوین</option>#}
+                                {#                    <option value="بانک پارسیان">بانک پارسیان</option>#}
+                                {#                    <option value="بانک کارآفرین">بانک کارآفرین</option>#}
+                                {#                    <option value="بانک سامان">بانک سامان</option>#}
+                                {#                    <option value="بانک سینا">بانک سینا</option>#}
+                                {#                    <option value="بانک شهر">بانک شهر</option>#}
+                                {#                    <option value="بانک دی">بانک دی</option>#}
+                                {#                    <option value="بانک صادرات">بانک صادرات</option>#}
+                                {#                    <option value="بانک ملت">بانک ملت</option>#}
+                                {#                    <option value="بانک تجارت">بانک تجارت</option>#}
+                                {#                    <option value="بانک رفاه">بانک رفاه</option>#}
+                                {#                    <option value="بانک قوامین">بانک قوامین</option>#}
+                                {#                    <option value="بانک انصار">بانک انصار</option>#}
+                                {#                    <option value="بانک سرمایه">بانک سرمایه</option>#}
+                                {#                    <option value="بانک پاسارگاد">بانک پاسارگاد</option>#}
+                                {#                    <option value="پست بانک ایران">پست بانک ایران</option>#}
+                                {#                    <option value="بانک خاور میانه">بانک خاور میانه</option>#}
+                                {#                  </select>#}
+                                {#                </label>#}
+
+                                {#                <label class="block">#}
+                                {#                  <span class="input--label">شماره </span>#}
+                                {#                  <div class="flex gap-2 flex-row-reverse">#}
+                                {#                    <input type="text" pattern="[0-9]+" placeholder="xxxx" required data-err="لطفا این فیلد را با اعداد انگلیسی پر کنید" class="form-input text-center block w-full" maxlength="4" oninput="(this.value.length == 4) ? this.nextElementSibling.focus() : null">#}
+                                {#                    <input type="text" pattern="[0-9]+" placeholder="xxxx" required data-err="لطفا این فیلد را با اعداد انگلیسی پر کنید" class="form-input text-center block w-full" maxlength="4" oninput="(this.value.length == 4) ? this.nextElementSibling.focus() : null">#}
+                                {#                    <input type="text" pattern="[0-9]+" placeholder="xxxx" required data-err="لطفا این فیلد را با اعداد انگلیسی پر کنید" class="form-input text-center block w-full" maxlength="4" oninput="(this.value.length == 4) ? this.nextElementSibling.focus() : null">#}
+                                {#                    <input type="text" pattern="[0-9]+" placeholder="xxxx" required data-err="لطفا این فیلد را با اعداد انگلیسی پر کنید" class="form-input text-center block w-full" maxlength="4">#}
+                                {#                  </div>#}
+                                {#                </label>#}
+
+                                <label class="block">
+                                    <span class="input--label">شماره شبا</span>
+                                    <div class="flex items-center gap-4">
+                                        <input type="number" maxlength="26" name="sheba" class="form-input block w-full"
+                                               value="{{ user.sheba }}">
+                                        <span class="text-xl" style="direction: ltr">IR</span>
+                                    </div>
+                                </label>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+<button type="submit" class="btn btn--md btn--primary mr-auto mt-4 block">ذخیره اطلاعات
+                </button>
+            </form>
+        </div>
+    </main>
+{% endblock %}

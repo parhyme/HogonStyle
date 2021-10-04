@@ -1,0 +1,273 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} محصولات | {% endblock %}
+
+{% block content %}
+    <body class="font-farsi overflow-x-hidden">
+    <div class="overlay"></div>
+    <div class="hover-overlay"></div>
+
+    <!-- logOut modal -->
+    <div class="modal w-3/12 p-4 lg:w-4/6 sm:w-10/12" id="logoutModal">
+        <div>
+            <h1 class="text-2xl">خروج از سایت</h1>
+            <p class="text-sm text-gray-700 mt-2">ایا میخواهید از پروفایل خود خارج شوید ؟</p>
+
+            <div class="mt-8 flex">
+                <button
+                        class="flex-grow btn btn--sm btn--primary border-2 border-gray-900 border-solid close-modal-btn static">
+                    انصراف
+                </button>
+                <button class="flex-grow btn btn--sm btn--secondary"><a href="{% url 'logout' %}">خروج</a></button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <ul class="breadcrumb bg-gray-100 w-full p-3 container">
+        <li class="text-sm transition-colors hover:text-gray-500"><a href="{% url 'index' %}">هوگون</a></li>
+        <i class="breadcrumb-icon fa fa-angle-left"></i>
+        <li class="text-sm"><a>پروفایل</a></li>
+    </ul>
+
+
+    <!--main-->
+    <main class="container px-0 profile flex md:flex-col">
+        <div class="w-1/5 md:w-full">
+            <div class="bg-gray-100 pt-8">
+                <div class="flex flex-col items-center">
+                    <span class="text-9xl"><i class="fa fa-user-circle"></i></span>
+                    <h1 class="text-2xl font-bold">{{ user.username }}</h1>
+                </div>
+
+                <ul class="mt-4">
+                    <li><a href=" {% url 'profile' %} " class="sidebar-item"><i
+                            class="text-3xl fa fa-user"></i>پرفایل</a></li>
+                    <li><a href=" {% url 'profile-orders' %} " class="sidebar-item active"><i
+                            class="text-3xl fa fa-shopping-basket "></i>لیست
+                        سفارشات من</a></li>
+{#                    <li><a href=" {% url '' %} " class="sidebar-item"><i#}
+{#                            class="text-3xl fa fa-undo"></i>درخواست#}
+{#                        مرجوعی</a></li>#}
+                    <li><a href=" {% url 'profile-address' %} " class="sidebar-item"><i
+                            class="text-3xl fa fa-map-marked-alt"></i>آدرس‌های من</a></li>
+                    <li><a href=" {% url 'profile-password' %} " class="sidebar-item"><i
+                            class="text-3xl fa fa-lock-open"></i>تغییر
+                        رمز عبور</a></li>
+                    <li class="cursor-pointer" data-modal="logoutModal" onclick="showModal(event)"><a href="#"
+                                                                                                      class="sidebar-item pointer-events-none"><i
+                            class="text-3xl fa fa-times-circle"></i>خروج</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="w-4/5 md:w-full p-20 lg:p-4 md:max-w-[100vw] md:overflow-x-scroll">
+
+            {% if orders %}
+                {% for order in orders.all %}
+                    <!-- order info modal -->
+                    <div class="modal p-0 pt-16 w-7/12 xl:w-10/12 lg:w-11/12" id="{{ order.id }}">
+                            <div class="flex flex-col">
+                                <div class="close-modal-btn "><i class="fa fa-times"></i></div>
+                                <h1 class="absolute top-4 font-bold translate translate-x-1/2 right-1/2 text-2xl">لیست
+                                    سفارش</h1>
+                                <div class="max-h-[90vh] overflow-y-scroll">
+                                    <div>
+                                        <table class="w-full table-bordered">
+                                            <thead>
+                                            <tr>
+                                                <th>عکس</th>
+                                                <th>نام محصول</th>
+                                                <th>رنگ</th>
+                                                <th>سایز</th>
+                                                <th>تعداد</th>
+                                                <th>قیمت</th>
+                                            </tr>
+                                            </thead>
+
+                                            <tbody>
+                                            {% for orderitem in order.items.all %}
+                                            <tr>
+                                                <th class="w-36">
+                                                    <div><img
+                                                            src="{{ orderitem.item.image_1.url }}"
+                                                            alt="">
+                                                    </div>
+                                                </th>
+                                                <td>{{ orderitem.item.title }}</a></td>
+                                                <td>{{ orderitem.color }}</td>
+                                                <td>{{ orderitem.size }}</td>
+                                                <td>{{ orderitem.quantity }}</td>
+                                                <td>{{ orderitem.get_total_item_price }} تومان</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td colspan="5" class="text-left">مجموع مبلغ پرداختی :</td>
+                                                <td>{{ order.get_total_discounted }} تومان</td>
+                                            </tr>
+                                            </tbody>
+                                                {% endfor %}
+                                        </table>
+
+                                        <div class="max-w-[80%] mx-auto my-12">
+                                            <hr class="my-4">
+                                            <div class="text-center text-gray-600">
+                                                <p>لطفا مبلغ تایین شده را به کارت با شماره</p>
+                                                <p>5022 - 2913 - 0263 - 0487</p>
+                                                <p>به نام محمد زمردیان واریز کنید</p>
+                                                <p>این سفارش به مدت دو ساعت برای شما رزرو شده است . برای نهایی کردن
+                                                    سفارش و ثبت پرداخت ، از
+                                                    فرم زیر استفاده کنید</p>
+                                            </div>
+                                            <form action="" class="flex gap-4 flex-col items-center my-8 items-end"
+                                                  id="orderInput">
+                                                <div class="flex gap-4">
+                                                    <label class="block">
+                                                        <span class="input--label">کد رهگیری</span>
+                                                        <input type="text" class="form-input mt-1 block w-full">
+                                                    </label>
+
+                                                    <label class="block">
+                                                        <span class="input--label">مبلغ</span>
+                                                        <input type="number" class="form-input mt-1 block w-full">
+                                                    </label>
+
+                                                    <button type="button"
+                                                            class="btn btn--sm btn--primary !bg-red-600 !ring-red-200 h-[2.6rem] mt-auto !opacity-0">
+                                                        <i class="fa fa-minus pointer-events-none"></i></button>
+                                                </div>
+                                            </form>
+
+
+                                            <div class="flex justify-center ">
+                                                <div class="space-y-2">
+                                                    <button type="submit" class="btn btn--sm btn--primary !block w-full"
+                                                            id="addOrderInput">
+                                                        اضافه کردن فیلد
+                                                    </button>
+                                                    <button class="btn btn--sm btn--primary !block w-full">ثبت فیش های
+                                                        واریزی
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <hr class="my-4">
+
+                                            <div>
+                                                <h1 class="text-xl mt-8 mb-4">لیست پرداخت ها</h1>
+                                                <table class="table-bordered w-full">
+                                                    <thead class="thead-dark">
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>نوع پرداخت</th>
+                                                        <th>مبلغ (ریال)</th>
+                                                        <th>تاریخ</th>
+                                                        <th>شماره مرجع</th>
+                                                        <th>شماره پیگیری</th>
+                                                        <th>وضعیت</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td>۱</td>
+                                                        <td>آنلاین</td>
+                                                        <td>8,640,000</td>
+                                                        <td>1400/05/28 11:46:26</td>
+                                                        <td>0</td>
+                                                        <td>در انتظار تایید</td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                {% endfor %}
+            {% endif %}
+            <table class="table-bordered w-full">
+                <thead class="thead-dark">
+                <tr>
+                    <th>#</th>
+                    <th>کد سفارش</th>
+                    <th>تاریخ سفارش</th>
+                    <th>قیمت کل (ریال)</th>
+                    <th>پرداخت</th>
+                    <th>وضعیت سفارش</th>
+                    <th>عملیات</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% if orders %}
+                    {% for order in orders.all %}
+
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>HS-{{ order.code }}</td>
+                            <td>{{ order.start_date }}</td>
+                            <td>{{ order.get_total_discounted }}</td>
+                            {% if order.payment == None %}
+                                <td>در انتظار پرداخت</td>
+                            {% else %}
+                                <td>پرداخت شده</td>
+                            {% endif %}
+                            <td><span
+                                    class="inline-block bg-red-100 text-red-800 p-2 rounded-md">{{ order.state }}</span>
+                            </td>
+                            <td>
+                                <button class="btn btn--sm btn--primary" data-modal="{{ order.id }}"
+                                        data-id="{{ order.id }}"
+                                        data-target="#{{ order.id }}"
+                                        onclick="showModal(event)"><i class="fa fa-search pointer-events-none"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+                {#                <tr>#}
+                {#                    <td>۱</td>#}
+                {#                    <td>WP-155996</td>#}
+                {#                    <td>1400/05/28 11:46:26</td>#}
+                {#                    <td>8,640,000</td>#}
+                {#                    <td>در انتظار پرداخت</td>#}
+                {#                    <td><span class="inline-block bg-red-100 text-red-800 p-2 rounded-md">حذف شده توسط سیستم</span></td>#}
+                {#                    <td>#}
+                {#                        <button class="btn btn--sm btn--primary" data-modal="orderInfoModal" onclick="showModal(event)">#}
+                {#                            <i class="fa fa-search pointer-events-none"></i></button>#}
+                {#                    </td>#}
+                {#                </tr>#}
+                {##}
+                {#                <tr>#}
+                {#                    <td>۱</td>#}
+                {#                    <td>WP-155996</td>#}
+                {#                    <td>1400/05/28 11:46:26</td>#}
+                {#                    <td>8,640,000</td>#}
+                {#                    <td>در انتظار پرداخت</td>#}
+                {#                    <td><span class="inline-block bg-yellow-100 text-yellow-800 p-2 rounded-md">در انتظار پرداخت</span>#}
+                {#                    </td>#}
+                {#                    <td>#}
+                {#                        <button class="btn btn--sm btn--primary" data-modal="orderInfoModal" onclick="showModal(event)">#}
+                {#                            <i class="fa fa-search pointer-events-none"></i></button>#}
+                {#                    </td>#}
+                {#                </tr>#}
+                {##}
+                {#                <tr>#}
+                {#                    <td>۱</td>#}
+                {#                    <td>WP-155996</td>#}
+                {#                    <td>1400/05/28 11:46:26</td>#}
+                {#                    <td>8,640,000</td>#}
+                {#                    <td>در انتظار پرداخت</td>#}
+                {#                    <td><span class="inline-block bg-green-100 text-green-800 p-2 rounded-md">پرداخت شده</span></td>#}
+                {#                    <td>#}
+                {#                        <button class="btn btn--sm btn--primary" data-modal="orderInfoModal" onclick="showModal(event)">#}
+                {#                            <i class="fa fa-search pointer-events-none"></i></button>#}
+                {#                    </td>#}
+                {#                </tr>#}
+                </tbody>
+            </table>
+        </div>
+    </main>
+{% endblock %}

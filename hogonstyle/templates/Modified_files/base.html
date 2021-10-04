@@ -1,0 +1,27 @@
+{% load static %}
+<!doctype html>
+<html lang="en" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{% block title %}{% endblock %}</title>
+  <!-- line awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/font-awesome-line-awesome/css/all.min.css">
+  <!-- swiepr js -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.8.0/swiper-bundle.min.css">
+  <!-- styles css -->
+  <link rel="stylesheet" href=" {% static 'new/{% static '/css/styles.css' %}' %} ">
+</head>
+<body class="font-farsi overflow-x-hidden">
+
+{% include 'partials/Topbar.html' %}
+    <!-- Main Content -->
+  {% block content %} {% endblock %}
+    {% include 'partials/footer.html' %}
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.8.0/swiper-bundle.min.js"></script>
+<script src=" {% static 'new/{% static '/js/script.js' %}' %} "></script>
+</body>
+</html>

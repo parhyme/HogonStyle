@@ -1,0 +1,79 @@
+{% load static %}
+<!-- footer -->
+  <footer class="bg-orange-500 py-8 text-white">
+    <div class="footer-inner container">
+      <div class="footer-images  lg:order-1">
+        <img src="{% static 'assets/site/logo.png' %}" alt="" />
+        <img src="{% static 'assets/site/enamad.png' %}" alt="" />
+      </div>
+
+      <div class="footer-links lg:order-4">
+        <h6 class="footer-title">راهنمای خرید</h6>
+        <ul>
+          <li><a class="footer-link-item" href="{% url 'size-guide' %}">راهنمای انتخاب سایز</a></li>
+          <li><a class="footer-link-item" href="{% url 'delivery' %}">روش ارسال</a></li>
+          <li><a class="footer-link-item" href="{% url 'payment' %}">روش پرداخت</a></li>
+        </ul>
+      </div>
+
+        <div class="footer-links lg:order-5">
+        <h6 class="footer-title">خدمات مشتریان</h6>
+        <ul>
+          <li>پشتیبانی: 91005005 - 021</li>
+          <li><a class="footer-link-item" href="{% url 'faq' %}">سوالات متداول</a></li>
+          <li><a class="footer-link-item" href="{% url 'refunding' %}">بازگشت کالا</a></li>
+            <li><a class="footer-link-item" href="{% url 'privacy' %}">حریم خصوصی</a></li>
+            <li><a class="footer-link-item" href="{% url 'in-person-store' %}">فروشگاه حضوری</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links lg:order-3">
+        <h6 class="footer-title">درباره هوگون استایل</h6>
+        <ul>
+          <li><a class="footer-link-item" href="{% url 'about' %}">درباره ما</a></li>
+          <li><a class="footer-link-item" href="{% url 'contact' %}">ارتباط با ما</a></li>
+        </ul>
+      </div>
+
+      <div class="join-blog lg:order-2 sm:flex sm:flex-col sm:items-center">
+        <h6 class="footer-title">ثبت ایمیل در خبرنامه</h6>
+
+        <div class="flex border-solid border border-gray-900">
+          <input type="text" class="border-0 flex-auto focus:ring-0 text-gray-900" placeholder="آدرس ایمیل شما">
+          <button class="btn--primary transition text-white px-8">ثبت</button>
+        </div>
+
+        <p class="mt-4">از جدیدترین محصولات و تخفیف‌ها با خبر شوید</p>
+
+        <div class="footer-social">
+          <p class="font-bold">ما را در شبکه‌های اجتماعی دنبال کنید</p>
+          <ul>
+            <li class="social-item">
+              <a href="https://www.instagram.com/webpoosh/" target="_blank">
+                <i class="fab fa-instagram icon"></i>
+              </a>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </div>
+    <hr class="my-4 container">
+    <div class="footer-info container">
+      <ul>
+{#        <li><a href="#">وبلاگ</a></li>#}
+{#        &nbsp;|&nbsp;#}
+        <li><a href="{% url 'products' category="men" subcategory="shirt" %}">پیراهن</a></li>
+        &nbsp;|&nbsp;
+        <li><a href="{% url 'products' category="men" subcategory="polo" %}">پولوشرت</a></li>
+        &nbsp;|&nbsp;
+        <li><a href="{% url 'products' category="men" subcategory="t-shirt" %}">تیشرت</a></li>
+        &nbsp;|&nbsp;
+        <li><a href="{% url 'products' category="men" subcategory="jeans" %}">شلوار جین</a></li>
+      </ul>
+      <div class="footer-copyright">
+        <span>کلیه حقوق مادی و معنوی این سایت متعلق به فروشگاه هوگون می‌باشد</span>
+        <span>hogon.co - 2021 © Copyright</span>
+      </div>
+    </div>
+  </footer>

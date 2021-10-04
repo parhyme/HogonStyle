@@ -1,0 +1,438 @@
+{% load static %}
+<!-- navigation -->
+<div class="flex flex-col relative flex flex-col" id="navigation">
+
+     <!-- login modal -->
+    <div class="modal tab-navigation w-1/4 xl:w-2/6 lg:w-2/4 md:w-5/6 lg:overflow-x-hidden" id="userAccountModal">
+        <button class="close-modal-btn"><i class="fa fa-times"></i></button>
+
+        <div class="tabs flex">
+            <button class="tab-btn flex-auto btn btn--md btn--secondary border-0 border-b-2 xs:btn--sm active">ورود
+            </button>
+            <button class="tab-btn flex-auto btn btn--md btn--secondary border-0 border-b-2 xs:btn--sm">ثبت نام</button>
+        </div>
+
+        <div class="pt-8">
+            <div class="tab-item active">
+                <form action="{% url 'login' %}" method="POST">
+                    {% csrf_token %}
+                    <label class="block mb-4">
+                        <span class="input--label">شماره تلفن همراه</span>
+                        <input type="text" name="phone" class="form-input mt-1 block w-full text-left" style="direction: ltr"
+                               placeholder="۹۱۲ ۰۰۰ ۰۰۰۰" required data-err="لطفا شماره موبایل خود را وارد کنید">
+                    </label>
+
+                    <label class="block mb-4">
+                        <span class="input--label">رمز عبور</span>
+                        <input type="password" name="password" style="direction: ltr" class="form-input mt-1 block w-full" required
+                               data-err="لطفا رمز عبور خودتان را وارد کنید">
+                    </label>
+
+                    <a href="#" class="text-blue-500 inline-block">رمز عبور خود را فراموش کرده ام</a>
+                    <hr class="my-4"/>
+                    <button type="submit" class="btn btn--md btn--primary block w-full xs:btn--sm">ورود</button>
+                </form>
+            </div>
+
+            <div class="tab-item">
+                <form action="{% url 'register' %}" method="POST">
+                    {% csrf_token %}
+                    <label class="block mb-4">
+                        <span class="input--label">شماره تلفن همراه</span>
+                        <input type="number" name="phone" class="form-input mt-1 block w-full text-left" style="direction: ltr"
+                               placeholder="۹۱۲ ۰۰۰ ۰۰۰۰" required data-err="لطفا شماره موبایل خود را وارد کنید">
+                        <span class="input--label">نام و نام خانوادگی</span>
+                        <input type="text" name="full_name" class="form-input mt-1 block w-full text-left" style="direction: ltr"
+                               placeholder="نام و نام خانوادگی" required data-err="لطفا نام و نام خانوادگی خود را وارد کنید">
+                        <span class="input--label">رمز عبور</span>
+                        <input type="password" name="password" class="form-input mt-1 block w-full text-left" style="direction: ltr"
+                               placeholder="رمز عبور" required data-err="لطفا رمز عبور را وارد کنید">
+                        <span class="input--label">تکرار رمز عبور</span>
+                        <input type="password" name="password2" class="form-input mt-1 block w-full text-left" style="direction: ltr"
+                               placeholder="نکراز رمز عبور" required data-err="لطفا نکراز رمز عبور را وارد کنید">
+                    </label>
+                    <hr class="my-4"/>
+                    <button type="submit" class="btn btn--md btn--primary block w-full">ثبت نام</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-orange-500 p-2.5 text-center text-white text-xs">
+      <span>ارسال رایگان برای سفارش های بالای 500 هزار تومان <a href="{% url 'delivery' %}" class="underline" target="_blank">مشاهده
+          جزئیات</a></span>
+    </div>
+
+    <div class="mobile-menu xs:px-4 pt-16 hidden md:block select-none shadow-2xl" id="mobileMenu">
+        <div class="flex items-center close-modal-btn gap-2 right-7 xs:right-3">
+            <button class="flex items-center pointer-events-none"><i class="fa fa-times"></i></button>
+            <span class="pointer-events-none text-base">بستن منو</span>
+        </div>
+        <ul class="divide-gray-200 divide-solid divide-y">
+            <div class="space-y-2">
+{#                <li class="flex border-solid border border-gray-900">#}
+{#                    <input type="text" class="border-0 flex-auto focus:ring-0" placeholder="جستجو ...">#}
+{#                    <button class="btn--primary transition text-white"><i class="text-2xl px-2 fa fa-search"></i>#}
+{#                    </button>#}
+{#                </li>#}
+
+                {% if user.is_authenticated %}
+                    <li class="cursor-pointer flex items-center gap-2 group btn btn-md btn--primary p-2">
+
+                    <i class="pointer-events-none text-xl fa fa-user-plus"> </i>
+                         <h1>پروفایل</h1>
+                    {% else %}
+                    <li class="cursor-pointer flex items-center gap-2 group btn btn-md btn--primary p-2"
+                    data-modal="userAccountModal" onclick="showModal(event)">
+                    <i class="pointer-events-none text-xl fa fa-user-plus"></i>
+                    <span class="pointer-events-none">ثبت نام / ورود</span>
+                </li>
+                {% endif %}
+
+            </div>
+            <li class=" py-4"><a href="{% url 'index' %}">خانه</a></li>
+            <li class=" py-4"><a href="{% url 'sets' %}">ست</a></li>
+            <li>
+                <button class="btn--icon justify-between accordion-btn w-full py-4">مردانه<i
+                        class="fa fa-angle-down"></i></button>
+                <div class="acc-panel transition-all">
+                    <ul class="pr-4 space-y-6 py-2 mt-4 bg-gray-100">
+                        <li><strong>لباس</strong></li>
+                        <li><a href="{% url 'products' category="men" subcategory="t-shirt" %}">تی شرت</a></li>
+                        <li><a href="{% url 'products' category="men" subcategory="shirt" %}">پیراهن</a></li>
+                        <li><a href="{% url 'products' category="men" subcategory="hoody" %}">سویشرت و هودی</a></li>
+                        <li><a href="{% url 'products' category="men" subcategory="jacket" %}">کاپشن و پالتو</a></li>
+                        <li><a href="{% url 'products' category="men" subcategory="knitwear" %}">بافت</a></li>
+                        <li><a href="{% url 'products' category="men" subcategory="dors" %}">دورس</a></li>
+                        <li><strong>شلوار</strong></li>
+                        <li><a href="{% url 'products' category="men" subcategory="jeans" %}">جین</a></li>
+                        <li><a href="{% url 'products' category="men" subcategory="trousers" %}">پارچه ای</a></li>
+                        <li><a href="{% url 'products' category="men" subcategory="cotton-trousers" %}">کتان</a></li>
+                        <li><a href="{% url 'products' category="men" subcategory="shorts" %}">شلوارک</a></li>
+                        <li><strong>کفش</strong></li>
+                        <li><a href="{% url 'products' category="men" subcategory="sneakers" %}">کتانی</a></li>
+                        <li><a href="{% url 'products' category="men" subcategory="sandals" %}">سندل</a></li>
+                        <li><a href="{% url 'products' category="men" subcategory="official" %}">کفش رسمی</a></li>
+                        <li><strong>کیف</strong></li>
+                        <li><a href="{% url 'products' category="men" subcategory="hand-bag" %}">دستی</a></li>
+                        <li><a href="{% url 'products' category="men" subcategory="wallet" %}">کیف پول و جاکارتی</a></li>
+                        <li><a href="{% url 'products' category="men" subcategory="bag" %}">کمری</a></li>
+                        <li><strong>اکسسوری</strong></li>
+                        <li><a href="{% url 'products' category="accessories" subcategory="scarf" %}">شال</a></li>
+                        <li><a href="{% url 'products' category="accessories" subcategory="cap" %}">کلاه و کپ</a></li>
+                        <li><a href="{% url 'products' category="accessories" subcategory="belt" %}">کمربند</a></li>
+                        <li><a href="{% url 'products' category="accessories" subcategory="wallet" %}">جاکارتی</a></li>
+                        <li><a href="{% url 'products' category="accessories" subcategory="socks" %}">جوراب</a></li>
+                        <li><a href="{% url 'products' category="accessories" subcategory="landyard" %}">لندیارد</a></li>
+                        <li><a href="{% url 'products' category="accessories" subcategory="lighter" %}">فندک</a></li>
+                        <li><a href="{% url 'products' category="accessories" subcategory="decorative" %}">دکوری</a></li>
+                    </ul>
+                </div>
+            </li>
+            <button class="btn--icon justify-between accordion-btn w-full py-4">زنانه<i
+                    class="fa fa-angle-down"></i></button>
+            <div class="acc-panel transition-all">
+                <ul class="pr-4 space-y-6 py-2 mt-4 bg-gray-100">
+                    <li><strong>لباس</strong></li>
+                    <li><a href="{% url 'products' category="women" subcategory="t-shirt" %}">تی شرت</a></li>
+                    <li><a href="{% url 'products' category="women" subcategory="manto" %}">مانتو</a></li>
+                    <li><a href="{% url 'products' category="women" subcategory="top" %}">تاپ</a></li>
+                    <li><a href="{% url 'products' category="women" subcategory="jacket" %}">کاپشن و پالتو</a></li>
+                    <li><a href="{% url 'products' category="women" subcategory="blouses" %}">بلوز و شومیز</a></li>
+                    <li><a href="{% url 'products' category="women" subcategory="knitwear" %}">بافت</a></li>
+                    <li><strong>شلوار</strong></li>
+                    <li><a href="{% url 'products' category="women" subcategory="jeans" %}">جین</a></li>
+                    <li><a href="{% url 'products' category="women" subcategory="trousers" %}">پارچه ای</a></li>
+                    <li><a href="{% url 'products' category="women" subcategory="shorts" %}">شلوارک</a></li>
+                    <li><strong>کیف</strong></li>
+                    <li><a href="{% url 'products' category="women" subcategory="hand-bag" %}">دستی و دوشی</a></li>
+                    <li><a href="{% url 'products' category="women" subcategory="backpack" %}">کوله پشتی</a></li>
+                    <li><strong>اکسسوری</strong></li>
+                    <li><a href="{% url 'products' category="accessories" subcategory="scarf" %}">شال</a></li>
+                    <li><a href="{% url 'products' category="accessories" subcategory="wallet" %}">جاکارتی</a></li>
+                    <li><a href="{% url 'products' category="accessories" subcategory="socks" %}">جوراب</a></li>
+                    <li><a href="{% url 'products' category="accessories" subcategory="cap" %}">کلاه</a></li>
+                </ul>
+            </div>
+            </li>
+            <li class=" py-4"><a href="{% url 'products-street' %}">استریت استایل</a></li>
+
+            </li>
+            <button class="btn--icon justify-between accordion-btn w-full py-4">اکسسوری<i
+                    class="fa fa-angle-down"></i></button>
+            <div class="acc-panel transition-all">
+                <ul class="pr-4 space-y-6 py-2 mt-4 bg-gray-100">
+                    <li><a href="{% url 'products' category="accessories" subcategory="cap" %}">کلاه و کپ</a></li>
+                    <li><a href="{% url 'products' category="accessories" subcategory="belt" %}">کمربند</a></li>
+                    <li><a href="{% url 'products' category="accessories" subcategory="wallet" %}">جاکارتی</a></li>
+                    <li><a href="{% url 'products' category="accessories" subcategory="landyard" %}">لندیارد</a></li>
+                    <li><a href="{% url 'products' category="accessories" subcategory="lighter" %}">فندک</a></li>
+                    <li><a href="{% url 'products' category="accessories" subcategory="decorative" %}">دکوری</a></li>
+                    <li><a href="{% url 'products' category="accessories" subcategory="socks" %}">جوراب</a></li>
+                </ul>
+            </div>
+            </li>
+            <li class=" py-4"><a href="#">تخفیف ها</a></li>
+        </ul>
+    </div>
+
+    <nav class="self-center w-full h-32">
+        <div class="flex justify-between items-center container">
+            <div class="hidden md:block" data-modal="mobileMenu" onclick="showModal(event)">
+                <span class="text-3xl pointer-events-none"><i class="fa fa-bars"></i></span>
+            </div>
+
+            <div class="flex">
+                <a href="{% url 'index' %}" class="mx-7 p-1 logo inline-block xl:px-0 xl:mx-0 md:h-16 md:py-4">
+                    <img src="{% static 'assets/site/logo.png' %}" alt="site-logo" class="h-full">
+                </a>
+
+                <ul class="flex md:hidden">
+                    <li class="navigation-item"><a href="{% url 'index' %}">خانه</a></li>
+                    <li class="navigation-item"><a href="{% url 'sets' %}">ست</a></li>
+                    <li class="navigation-item group"><a>مردانه</a>
+                        <div class="sub-menu group-hover:block">
+                            <div class="justify-between flex container p-0">
+                                <ul class="flex gap-4">
+                                    <div>
+                                        <li class="text-center"><strong>لباس</strong></li>
+                                        <li class="text-center"><a href="{% url 'products' category="men" subcategory="t-shirt" %}">تی شرت</a></li>
+                                        <li class="text-center"><a href="{% url 'products' category="men" subcategory="shirt" %}">پیراهن</a></li>
+                                        <li class="text-center"><a href="{% url 'products' category="men" subcategory="hoody" %}">سویشرت و هودی</a></li>
+                                        <li class="text-center"><a href="{% url 'products' category="men" subcategory="jacket" %}">کاپشن و پالتو</a></li>
+                                        <li class="text-center"><a href="{% url 'products' category="men" subcategory="knitwear" %}">بافت</a></li>
+                                        <li class="text-center"><a href="{% url 'products' category="men" subcategory="dors" %}">دورس</a></li>
+                                    </div>
+                                    <div style="border-left: 1px solid black;height: 500px;">
+                                    </div>
+
+                                    <div>
+                                        <li class="text-center"><strong>شلوار</strong></li>
+                                        <li class="text-center"><a href="{% url 'products' category="men" subcategory="jeans" %}">جین</a></li>
+                                        <li class="text-center"><a href="{% url 'products' category="men" subcategory="trousers" %}">پارچه ای</a></li>
+                                        <li class="text-center"><a href="{% url 'products' category="men" subcategory="cotton-trousers" %}">کتان</a></li>
+                                        <li class="text-center"><a href="{% url 'products' category="men" subcategory="shorts" %}">شلوارک</a></li>
+                                    </div>
+                                    <div style="border-left: 1px solid black;height: 500px;">
+                                    </div>
+
+                                    <div>
+                                        <li class="text-center"><strong>کفش</strong></li>
+                                        <li class="text-center"><a href="{% url 'products' category="men" subcategory="cotton-trousers" %}">کتانی</a></li>
+                                        <li class="text-center"><a href="{% url 'products' category="men" subcategory="sandals" %}">سندل</a></li>
+                                        <li class="text-center"><a href="{% url 'products' category="men" subcategory="official" %}">کفش رسمی</a></li>
+                                    </div>
+                                    <div style="border-left: 1px solid black;height: 500px;">
+                                    </div>
+
+                                    <div>
+                                        <li class="text-center"><strong>کیف</strong></li>
+                                        <li class="text-center"><a href="{% url 'products' category="men" subcategory="hand-bag" %}">دستی</a></li>
+                                        <li class="text-center"><a href="{% url 'products' category="men" subcategory="wallet" %}">کیف پول و جاکارتی</a></li>
+                                        <li class="text-center"><a href="{% url 'products' category="men" subcategory="bag" %}">کمری</a></li>
+                                    </div>
+                                    <div style="border-left: 1px solid black;height: 500px;">
+                                    </div>
+
+                                    <div>
+                                        <li class="text-center"><strong>اکسسوری</strong></li>
+                                        <li class="text-center"><a href="{% url 'products' category="accessories" subcategory="scarf" %}">شال</a></li>
+                                        <li class="text-center"><a href="{% url 'products' category="accessories" subcategory="cap" %}">کلاه و کپ</a></li>
+                                        <li class="text-center"><a href="{% url 'products' category="accessories" subcategory="belt" %}">کمربند</a></li>
+                                        <li class="text-center"><a href="{% url 'products' category="accessories" subcategory="wallet" %}">جاکارتی</a></li>
+                                        <li class="text-center"><a href="{% url 'products' category="accessories" subcategory="socks" %}">جوراب</a></li>
+                                        <li class="text-center"><a href="{% url 'products' category="accessories" subcategory="landyard" %}">لندیارد</a></li>
+                                        <li class="text-center"><a href="{% url 'products' category="accessories" subcategory="lighter" %}">فندک</a></li>
+                                        <li class="text-center"><a href="{% url 'products' category="accessories" subcategory="decorative" %}">دکوری</a></li>
+                                    </div>
+                                </ul>
+
+                                <img src="{% static 'assets/site/menu-1.jpg' %}" alt="">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="navigation-item group"><a>زنانه</a>
+                        <div class="sub-menu group-hover:block">
+                            <div class="justify-between flex container p-0">
+                                <ul class="font-bold flex gap-4">
+                                    <div>
+                                        <li class="text-center"><strong>لباس</strong></li>
+                                        <li class="text-center"><a href="{% url 'products' category="women" subcategory="t-shirt" %}">تی شرت</a></li>
+                                        <li class="text-center"><a href="{% url 'products' category="women" subcategory="manto" %}">مانتو</a></li>
+                                        <li class="text-center"><a href="{% url 'products' category="women" subcategory="top" %}">تاپ</a></li>
+                                        <li class="text-center"><a href="{% url 'products' category="women" subcategory="jacket" %}">کاپشن و پالتو</a></li>
+                                        <li class="text-center"><a href="{% url 'products' category="women" subcategory="blouses" %}">بلوز و شومیز</a></li>
+                                        <li class="text-center"><a href="{% url 'products' category="women" subcategory="knitwear" %}">بافت</a></li>
+                                    </div>
+                                    <div style="border-left: 1px solid black;height: 500px;">
+                                    </div>
+
+                                    <div>
+                                        <li class="text-center"><strong>شلوار</strong></li>
+                                        <li class="text-center"><a href="{% url 'products' category="women" subcategory="jeans" %}">جین</a></li>
+                                        <li class="text-center"><a href="{% url 'products' category="women" subcategory="trousers" %}">پارچه ای</a></li>
+                                        <li class="text-center"><a href="{% url 'products' category="women" subcategory="shorts" %}">شلوارک</a></li>
+                                    </div>
+                                    <div style="border-left: 1px solid black;height: 500px;">
+                                    </div>
+
+                                    <div>
+                                        <li class="text-center"><strong>کیف</strong></li>
+                                        <li class="text-center"><a href="{% url 'products' category="women" subcategory="hand-bag" %}">دستی و دوشی</a></li>
+                                        <li class="text-center"><a href="{% url 'products' category="women" subcategory="backpack" %}">کوله پشتی</a></li>
+                                    </div>
+                                    <div style="border-left: 1px solid black;height: 500px;">
+                                    </div>
+
+                                    <div>
+                                        <li class="text-center"><strong>اکسسوری</strong></li>
+                                        <li class="text-center"><a href="{% url 'products' category="accessories" subcategory="scarf" %}">شال</a></li>
+                                        <li class="text-center"><a href="{% url 'products' category="accessories" subcategory="wallet" %}">جاکارتی</a></li>
+                                        <li class="text-center"><a href="{% url 'products' category="accessories" subcategory="socks" %}">جوراب</a></li>
+                                        <li class="text-center"><a href="{% url 'products' category="accessories" subcategory="cap" %}">کلاه</a></li>
+                                    </div>
+                                </ul>
+
+                                <img src="{% static 'assets/site/menu-1.jpg' %}" alt="">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="navigation-item"><a href="{% url 'products-street' %}">استریت استایل</a></li>
+                    <li class="navigation-item group"><a>اکسسوری</a>
+                        <div class="sub-menu group-hover:block">
+                            <div class="justify-between flex container p-0">
+                                <ul class="font-bold text-2xs flex gap-4">
+                                    <div>
+                                        <li><a href="{% url 'products' category="accessories" subcategory="cap" %}">کلاه و کپ</a></li>
+                                        <li><a href="{% url 'products' category="accessories" subcategory="belt" %}">کمربند</a></li>
+                                        <li><a href="{% url 'products' category="accessories" subcategory="wallet" %}">جاکارتی</a></li>
+                                        <li><a href="{% url 'products' category="accessories" subcategory="landyard" %}">لندیارد</a></li>
+                                        <li><a href="{% url 'products' category="accessories" subcategory="lighter" %}">فندک</a></li>
+                                        <li><a href="{% url 'products' category="accessories" subcategory="decorative" %}">دکوری</a></li>
+                                        <li><a href="{% url 'products' category="accessories" subcategory="socks" %}">جوراب</a></li>
+                                    </div>
+                                </ul>
+                                <img src="{% static 'assets/site/menu-1.jpg' %}" alt="">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="navigation-item"><a href="#">تخفیف ها</a></li>
+                </ul>
+            </div>
+
+            <div class="flex">
+{#          <span class="nav-action md:hidden group">#}
+{#            <span class="text-3xl xl:text-2xl"><i class="fa fa-search"></i></span>#}
+{##}
+{#            <div class="nav-drop-down group-hover:block">#}
+{#              <div>#}
+{#                <div class="flex border-solid border border-gray-900">#}
+{#                  <input type="text" class="border-0 flex-auto focus:ring-0" placeholder="جستجو ...">#}
+{#                  <button class="btn--primary transition text-white"><i class="text-2xl px-2 fa fa-search"></i></button>#}
+{#                </div>#}
+{##}
+{#                <div class="space-y-3 pt-4">#}
+{#                  <div class="flex">#}
+{#                    <div class="w-2/6"><img src="assets/img/sets/set-5.jpg" alt="" class=""></div>#}
+{#                    <div class="flex-grow px-4 space-y-3">#}
+{#                      <h1>پیراهن مردانه 21208</h1>#}
+{#                      <p>در درسته <span class="font-bold">پیراهن مردانه</span></p>#}
+{#                      <a href="#" class="btn btn--sm btn--secondary">مشاهده محصول</a>#}
+{#                    </div>#}
+{#                  </div>#}
+{##}
+{#                  <div class="flex">#}
+{#                    <div class="w-2/6"><img src="assets/img/sets/set-7.jpg" alt="" class=""></div>#}
+{#                    <div class="flex-grow px-4 space-y-3">#}
+{#                      <h1>پیراهن مردانه 21208</h1>#}
+{#                      <p>در درسته <span class="font-bold">پیراهن مردانه</span></p>#}
+{#                      <a href="#" class="btn btn--sm btn--secondary">مشاهده محصول</a>#}
+{#                    </div>#}
+{#                  </div>#}
+{##}
+{#                  <div class="flex">#}
+{#                    <div class="w-2/6"><img src="assets/img/sets/set-9.jpg" alt="" class=""></div>#}
+{#                    <div class="flex-grow px-4 space-y-3">#}
+{#                      <h1>پیراهن مردانه 21208</h1>#}
+{#                      <p>در درسته <span class="font-bold">پیراهن مردانه</span></p>#}
+{#                      <a href="#" class="btn btn--sm btn--secondary">مشاهده محصول</a>#}
+{#                    </div>#}
+{#                  </div>#}
+{##}
+{#                  <a href="#" class="btn btn--sm btn--primary block">مشاهده تمام محصولات</a>#}
+{#                </div>#}
+{#              </div>#}
+{#            </div>#}
+{#          </span>#}
+
+                <div class="nav-action md:hidden group">
+                    <a href="{% url 'profile' %}" class="text-3xl xl:text-2xl"><i class="fa fa-user"></i></a>
+
+                    <div class="nav-drop-down group-hover:block">
+                        <ul>
+                            {% if user.is_authenticated %}
+                                <a href="{% url 'profile' %}">
+                                <li class="cursor-pointer flex items-center gap-2">
+                                <i class="pointer-events-none text-xl fa fa-user-plus"></i>
+                                <h1>پروفایل</h1>
+                                </a>
+                            </li>
+                            {% else %}
+                            <li class="cursor-pointer flex items-center gap-2" data-modal="userAccountModal"
+                                onclick="showModal(event)">
+                                <i class="pointer-events-none text-xl fa fa-user-plus"></i>
+                                <span class="pointer-events-none">ثبت نام / ورود</span>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="nav-action group">
+                    <a href="#" class="text-5xl xl:text-2xl"><i class="fa fa-shopping-bag"></i></a>
+
+                    <div class="nav-drop-down group-hover:flex flex-col md:group-hover:hidden">
+                        <div class="font-bold text-2xs flex justify-between">
+                            <h1>سبد خرید</h1>
+                            <span>{{ order.get_total }}</span>
+                        </div>
+                        <h1 class="text-xl font-bold">سبد خرید</h1>
+                        <a href="{% url 'cart' %}" class="btn btn--md btn--tertiary flex-auto mt-4">جزئیات سبد خرید</a>
+
+
+                        <div>
+                            <div class="grid grid-cols-3 gap-2">
+                                <!--inner-->
+                            {% if order_items %}
+                                {% for order_item in order_items %}
+                                <div class="space-y-2">
+                                    <!--item-->
+                                    <div class="">
+                                        <img src="{{ order_item.image_0.url }}" alt="das" class="w-full">
+                                    </div>
+                                    <div class="relative">
+                                        <h1 class="text-2xs">{{ order_item.item.title }}</h1>
+                                        <h2>
+                                            <span>{{ order_item.color }}</span>,<span>{{ order_item.size }}</span>
+                                        </h2>
+                                        <p>{{ order_item.item.get_price }}</p>
+
+                                        <div class="text-xs text-gray-500 flex justify-between">
+                                            <button>حذف</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                {% else %}
+<p class="border-t border-b border-solid border-gray-400 py-8 my-12 text-center">سبد خرید شما
+                            خالیست !</p>
+                            {% endif %}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>

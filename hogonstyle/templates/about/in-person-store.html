@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} محصولات |{% endblock %}
+
+{% block content %}
+<body class="font-farsi overflow-x-hidden">
+  <div class="overlay"></div>
+  <div class="hover-overlay"></div>
+
+  <!--main-->
+  <main class="max-w-6xl mx-auto weblog px-4 my-8">
+    <h1 class="text-2xl">فروشگاه حضوری</h1>
+    <hr class="my-4">
+    <div class="">
+      <div class="text-content">
+        <p>
+          شما مشتریان محترم می توانید در شهر تهران علاوه بر خرید اینترنتی به صورت حضوری نیز محصولات مورد علاقه‌ی خود را
+          از فروشگاه های وب پوش خریداری نمایید.
+        </p>
+        <div><img src=" {% static '../assets/img/slider/real-sotre-1.jpg' %} " class="mx-auto" alt=""></div>
+        <h1>فروشگاه اقدسیه:</h1>
+        <p>تهران، میدان ارتش، خیابان موحد دانش، نرسیده به چهار راه آجودانیه، پلاک 37 طبقه 3</p>
+        <div>
+          <iframe class="w-full"
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d6471.9807021279685!2d51.4829629!3d35.8001702!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xedcecc9dcf056085!2z2YjYqCDZvtmI2LQg2KfZgtiv2LPbjNmH!5e0!3m2!1sen!2sae!4v1615882247066!5m2!1sen!2sae"
+            width="600" height="450" allowfullscreen="allowfullscreen"></iframe>
+        </div>
+        <br><br>
+        <h1>فروشگاه شهرک غرب:</h1>
+        <p>
+          تهران، بلوار دادمان، خیابان فخارمقدم، ساختمان بانک رفاه، پلاک 10 طبقه 1
+        </p>
+        <div>
+          <iframe class="w-full"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3237.3320904829006!2d51.3548730152612!3d35.767217980174316!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e076454c0b505%3A0x4487a5127dcabe6b!2z2YjYqCDZvtmI2LQg2LTZh9ix2qkg2LrYsdio!5e0!3m2!1sen!2sae!4v1615882000719!5m2!1sen!2sae"
+            width="600" height="450" allowfullscreen="allowfullscreen"></iframe>
+        </div>
+
+        <br><br>
+        <h1>ساعات کاری فروشگاه های حضوری:</h1>
+        <p>هر روز هفته (شنبه تا پنج شنبه و جمعه) از ساعت 11 الی 22</p>
+        <p>
+          <span class="font-bold">امور مشتریان:</span> 91005005 - 021
+          <br>
+          <span class="font-bold">شماره پیام رسان واتساپ و تلگرام:</span> 09305000500
+        </p>
+        <div><img src=" {% static '../assets/img/slider/real-sotre-2.jpg' %} " class="mx-auto" alt=""></div>
+      </div>
+    </div>
+  </main>
+{% endblock %}

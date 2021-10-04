@@ -1,0 +1,472 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} محصولات | {% endblock %}
+
+{% block content %}
+    <body class="font-farsi overflow-x-hidden">
+    <div class="overlay"></div>
+    <div class="hover-overlay"></div>
+
+
+    <!-- Size selection guide -->
+    <div class="modal p-0 w-7/12 xl:w-10/12 lg:w-11/12" id="sizeGuideModal">
+        <div class="flex flex-col">
+            <div class="close-modal-btn "><i class="fa fa-times"></i></div>
+            <div class="max-h-[90vh] overflow-y-scroll">
+                <div>
+                    <div class="flex sm:flex-col-reverse">
+                        <div class="w-1/2 sm:w-full bg-gray-100 lg:px-4 sm:py-6 flex items-center justify-center">
+                            <div class="bg-white shadow-md p-6">
+                                <hr class="my-4">
+                                <p class="text-2xs">مدل با قد 185 سانتی‌متر و وزن 75 کیلوگرم سایز M را پوشیده است</p>
+                            </div>
+                        </div>
+
+                        <div class="flex w-1/2 sm:w-full">
+                            <div>
+                                <img src=" {% static 'assets/img/shirt/shirt-2--2--modal--2.jpg' %} " alt="">
+                            </div>
+
+                            <div>
+                                <img src=" {% static 'assets/img/shirt/shirt-2--2--modal--3.jpg' %} " alt="">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-navigation flex flex-col px-4 pt-8 pb-4">
+                        <div class="flex w-8/12 md:w-10/12 sm:w-full mx-auto">
+                            <button class="tab-btn btn btn--md btn--secondary border-0 border-b-2 flex-grow active">جدول
+                                سایز
+                            </button>
+                            <button class="tab-btn btn btn--md btn--secondary border-0 border-b-2 flex-grow">روش اندازه
+                                گیری
+                            </button>
+                        </div>
+
+                        <div class="pt-4">
+                            <div class="tab-item active">
+                                <div class="text-sm font-medium pt-4">
+                                    <p>لطفا طبق روش اندازه گیری ارائه شده سایز مناسب خود را از جدول زیر انتخاب
+                                        نمایید</p>
+                                    <ul class="leading-7">
+                                        <li class="list-disc list-inside">اندازه های ارائه شده در جدول زیر +/- ۱ سانتی
+                                            متر دارای خطا می باشد
+                                        </li>
+                                        <li class="list-disc list-inside">تمامی اندازه ها به سانتی متر می باشد</li>
+                                    </ul>
+                                    <hr class="my-4">
+                                    <table class="w-full table-bordered">
+                                        <thead>
+                                        <tr>
+                                            <th>سایز</th>
+                                            <th>عرض سینه</th>
+                                            <th>عرض کمر</th>
+                                            <th>طول لباس</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <th>M</th>
+                                            <td>52</td>
+                                            <td>51</td>
+                                            <td>76</td>
+                                        </tr>
+                                        <tr>
+                                            <th>L</th>
+                                            <td>54</td>
+                                            <td>53</td>
+                                            <td>77</td>
+                                        </tr>
+                                        <tr>
+                                            <th>XL</th>
+                                            <td>56</td>
+                                            <td>55</td>
+                                            <td>77</td>
+                                        </tr>
+                                        <tr>
+                                            <th>XXL</th>
+                                            <td>58</td>
+                                            <td>57</td>
+                                            <td>78</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="tab-item">
+                                <div>
+                                    <p class="text-sm">لطفا طبق تصویر زیر اندازه ها را به دست آورید . سپس با مقایسه
+                                        اندازه های خود با جدول
+                                        سایز ارائه شده، سایز مناسب خود را انتخاب نمایید.</p>
+
+                                    <div class="w-full">
+                                        <img src=" {% static 'assets/img/shirt/shirt-guide.jpg' %} " alt=""
+                                             class="w-full">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <ul class="breadcrumb bg-gray-100 w-full p-3 container">
+        <li class="text-sm transition-colors hover:text-gray-500"><a href="{% url 'index' %}">هوگون</a></li>
+        <i class="breadcrumb-icon fa fa-angle-left"></i>
+        <li class="text-sm transition-colors hover:text-gray-500"><a href="">{{ category }}</a></li>
+        <i class="breadcrumb-icon fa fa-angle-left">{{ subcategory }}</i>
+        <li class="text-sm"><a></a></li>
+    </ul>
+
+    <!-- main -->
+    <main class="container px-0 mt-12 flex main-products 2xl:px-4">
+
+        <div class="w-1/6 ml-16 xl:ml-4 md:w-3/12 sm:hidden">
+            <form action="{% url 'products' ctg sctg %}" method="get">
+                <div class="bg-gray-50">
+                    <!--inner-->
+                    <div>
+                        <button type="button"
+                                class="btn--icon justify-between accordion-btn w-full py-4 px-4 bg-gray-100 hover:bg-gray-200 text-sm">
+                            به
+                            ترتیب<i class="fa fa-angle-down"></i></button>
+                        <div class="acc-panel transition-all">
+                            <div class="py-2 px-5 flex flex-col lg:text-sm">
+                                <label class="inline-flex py-2 items-center">
+                                    <input type="radio" name="sorting" checked="" value="جدیدترین">
+                                    <span class="mr-2">جدیدترین</span>
+                                </label>
+
+                                <label class="inline-flex py-2 items-center">
+                                    <input type="radio" name="sorting" value="ارزان ترین">
+                                    <span class="mr-2">ارزان ترین</span>
+                                </label>
+
+                                <label class="inline-flex py-2 items-center">
+                                    <input type="radio" name="sorting" value="گران ترین">
+                                    <span class="mr-2">گران ترین</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <button type="button"
+                                class="btn--icon justify-between accordion-btn w-full py-4 px-4 bg-gray-100 hover:bg-gray-200 text-sm">
+                            سایز<i
+                                class="fa fa-angle-down"></i></button>
+                        <div class="acc-panel transition-all cloth-filter">
+                            <div class="py-2 px-5 flex flex-wrap gap-y-2 lg:text-sm">
+                                {% for size in sizes %}
+                                    <label>
+                                        <input type="checkbox" name="size-filter" value="{{ size.name }}"/>
+                                        <span>{{ size.name }}</span>
+                                    </label>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                    </div>
+
+                <div>
+                        <button type="button"
+                                class="btn--icon justify-between accordion-btn w-full py-4 px-4 bg-gray-100 hover:bg-gray-200 text-sm">
+                            رنگ<i
+                                class="fa fa-angle-down"></i></button>
+                        <div class="acc-panel transition-all cloth-filter">
+                            <div class="py-2 px-5 flex flex-wrap gap-y-2 lg:text-sm">
+                                {% for color in colors %}
+                                    <label>
+                                        <input type="checkbox" name="color-filter" value="{{ color.tag }}"/>
+                                        <span>{{ color.tag }}</span>
+                                    </label>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                    </div>
+                <button type="submit" class="btn btn--md btn--tertiary">اعمال فیلتر</button>
+
+
+
+                </div>
+            </form>
+        </div>
+
+        <div class="w-5/6 md:w-9/12 sm:w-full">
+            <div>
+                <h1 class="text-base">{{ subcategory }}</h1>
+                <hr class="mt-4 mb-6"/>
+
+                <div class="grid grid-cols-4 gap-4 xl:grid-cols-3 xs:grid-cols-2">
+                    {% if items %}
+                        {% for item in items %}
+                            <!-- product modal -->
+                            <div class="modal product-modal product-swiper lg:w-screen lg:max-h-[90vh] lg:overflow-y-scroll"
+                                 id="productModal">
+                                <div class="flex lg:grid lg:grid-cols-[70vh 1fr 0fr]">
+                                    <div class="close-modal-btn right-8 top-2 z-10"><i class="fa fa-times"></i></div>
+                                    <div class="swiper-container gallery-thumbs lg:hidden">
+                                        <div class="swiper-wrapper" style="align-items: center">
+                                            <div class="swiper-slide">
+                                                <img src="{{ item.image_1.url }}"
+                                                     alt="slide 1"/>
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="{{ item.image_2.url }}"
+                                                     alt="slide 2"/>
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="{{ item.image_3.url }}"
+                                                     alt="slide 3"/>
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="{{ item.image_4.url }}"
+                                                     alt="slide 4"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="swiper-container gallery-top lg:w-full">
+                                        <div class="swiper-wrapper">
+                                            <div class="swiper-slide">
+                                                <img src="{{ item.image_1.url }}"
+                                                     alt="slide 1"/>
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="{{ item.image_2.url }}"
+                                                     alt="slide 2"/>
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="{{ item.image_3.url }}"
+                                                     alt="slide 3"/>
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="{{ item.image_4.url }}"
+                                                     alt="slide 4"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex flex-col">
+                                        <div class="product-content-inner overflow-y-scroll">
+                                            <h1 class="text-xl font-bold">{{ item.title }}</h1>
+                                            <p class="text-2xs my-4">{{ item.price }} تومان </p>
+                                            <hr/>
+                                            {% for color in item.colors.all %}
+                                                <label>
+                                                    <input type="radio" name="modal-selected-color">
+                                                    {% if color.color == '#000000' %}
+                                                        <span style="background: {{ color.color }};color: white;border-radius: 3px;border: 1px solid black;font-size: small">{{ color.tag }}</span>
+                                                    {% else %}
+                                                        <span style="background: {{ color.color }};border-radius: 3px;border: 1px solid black;font-size: small">{{ color.tag }}</span>
+                                                    {% endif %}
+
+                                                </label>
+
+                                            {% endfor %}
+
+                                            <div class="modal-product-size flex my-4">
+                                                {% for size in item.sizes.all %}
+                                                    <label>
+                                                        <input type="radio" name="type-clothe"/>
+                                                        <span>{{ size.name }}</span>
+                                                    </label>
+                                                {% endfor %}
+
+
+                                            </div>
+                                            <button class="text-blue-500 underline text-sm" data-modal="sizeGuideModal"
+                                                    onclick="showModal(event)"><i
+                                                    class="fa fa-ruler text-xl text-gray-900 pointer-events-none"></i>راهنمای
+                                                سایز
+                                            </button>
+                                            <hr class="mt-6"/>
+                                            <div>
+                                                <button class="accordion-btn btn w-full inline-block flex justify-between p-4 py-8">
+                                                    لباس<i
+                                                        class="fa fa-angle-down"></i></button>
+                                                <div class="acc-panel transition-all">
+                                                    <div class="p-6 pt-2 text-2xs">
+                                                        <p>پیراهن آستین بلند مردانه، دارای یقه معمولی</p>
+
+                                                        <p>
+                                                            مدل با قد 185 سانتی‌متر و وزن 75 کیلوگرم سایز M را پوشیده
+                                                            است
+                                                        </p>
+                                                        <p>
+                                                            با توجه به تفاوت نمایش رنگ‌ها در صفحه نمایش دستگاه‌های
+                                                            مختلف،
+                                                            رنگ محصولات در تصویر تا 20% با واقعیت متفاوت خواهد بود
+                                                        </p>
+
+                                                        <p>پیراهن آستین بلند مردانه، دارای یقه معمولی</p>
+
+                                                        <p>
+                                                            مدل با قد 185 سانتی‌متر و وزن 75 کیلوگرم سایز M را پوشیده
+                                                            است
+                                                        </p>
+                                                        <p>
+                                                            با توجه به تفاوت نمایش رنگ‌ها در صفحه نمایش دستگاه‌های
+                                                            مختلف،
+                                                            رنگ محصولات در تصویر تا 20% با واقعیت متفاوت خواهد بود
+                                                        </p>
+
+                                                        <p>پیراهن آستین بلند مردانه، دارای یقه معمولی</p>
+
+                                                        <p>
+                                                            مدل با قد 185 سانتی‌متر و وزن 75 کیلوگرم سایز M را پوشیده
+                                                            است
+                                                        </p>
+                                                        <p>
+                                                            با توجه به تفاوت نمایش رنگ‌ها در صفحه نمایش دستگاه‌های
+                                                            مختلف،
+                                                            رنگ محصولات در تصویر تا 20% با واقعیت متفاوت خواهد بود
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr class="mb-4"/>
+                                            <a href="{% url 'product-detail' item.id %}"
+                                               class="my-4 w-full btn btn--md btn--secondary">مشاهده تمامی
+                                                اطلاعات محصول</a>
+                                        </div>
+
+                                        <a href="#" class="btn btn--md btn--tertiary w-full inline-block">افزودن به سبد
+                                            خرید</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="product-item">
+                                    <!--product inner-->
+                                    <a href="#" class="product-image">
+                                        {#                                        {% for img in imags %}#}
+                                        {#                                            {% if img.post.id == item.id %}#}
+                                        {#                                                {% if forloop.counter0 == 0 %}#}
+                                        {#                                                    <img src="{{ img.images.url }}" alt=""/>#}
+                                        {#                                                {% endif %}#}
+                                        {#                                            {% endif %}#}
+                                        {#                                        {% endfor %}#}
+
+                                        {#                                        {% for img in imags %}#}
+                                        {#                                            {% if img.post.id == item.id %}#}
+                                        {#                                                {% if forloop.counter0 == 1 %}#}
+                                        {#                                                    <img class="product-image-hover-state" src=" {{ img.images.url }} "#}
+                                        {#                                                         alt=""#}
+                                        {#                                                         onclick="document.location.href='http://hogonstyle.co/products/{{ item.id }}'"/>#}
+                                        {#                                                {% endif %}#}
+                                        {#                                            {% endif %}#}
+                                        {#                                        {% endfor %}#}
+                                        <img src="{{ item.image_1.url }}" alt=""/>
+                                        <img class="product-image-hover-state" src=" {{ item.image_2.url }} "
+                                             alt=""
+                                             onclick="document.location.href='http://hogonstyle.co/products/{{ item.id }}'"/>
+
+
+                                        <button class="btn btn--sm btn--primary product-btn lg:hidden flex items-center justify-center">
+                                            <span>مشاهده سریع &nbsp;</span>
+                                            <span class="flex mt-0.5"><i class="fa fa-search"></i></span>
+                                        </button>
+                                    </a>
+                                    <div class="product-content">
+                                        <a href="{% url 'product-detail' item.id %}"
+                                           class="product-title">{{ item.title }}</a>
+                                        {% if item.discount_price %}
+                                            <p class="product-price discount">{{ item.discount_price }} تومان</p>
+                                        {% endif %}
+                                        <p class="product-price">{{ item.price }} تومان</p>
+                                        <div class="product-colors">
+                                            {% for color in item.colors.all %}
+                                                <span style="background: {{ color.color }};border-radius: 3px;border: 1px solid black;font-size: small">...</span>
+                                            {% endfor %}
+                                        </div>
+                                        <div class="product-sizes">
+                                            {% for size in item.sizes.all %}
+                                                <span>{{ size.name }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <div>
+                            <h4>کالایی موجود نیست!</h4>
+                        </div>
+                    {% endif %}
+                    <div>
+                        <p>
+                            با شنیدن پوشاک مردانه یکی از اولین گزینه هایی که به ذهن هرکس می
+                            رسد پیراهن مردانه است. پیراهن های مردانه همیشه یک عضو جدا نشدنی در
+                            کمد لباس هر مرد بوده و دوستی نزدیکی با هر مرد شیک پوش داشته
+                            است.بهترین پیراهن مردانه علاوه بر یک ظاهر عالی راحتی را برای ما
+                            فراهم می کند. برای مثال پیراهن های نخی در فصل های گرم و پیراهن های
+                            کتان و جین در فصل های سرد کمک زیادی به ما می کنند.این محصولات با
+                            داشتن تنوع در نوع، طرح و رنگ بندی برای هر نوع تیپ مناسب می باشد.
+                        </p>
+                        <h1 class="mb-2">انواع پیراهن و بلوز مردانه</h1>
+                        <p>
+                            شما می توانید انواع پیراهن مردانه نظیر: پیراهن نخی، کتان، جین و...
+                            را در طرح ها و انواع متنوع در فروشگاه اینترنتی وب پوش انتخاب کنید.
+                        </p>
+                        <h1 class="mb-2">پیراهن مجلسی و رسمی مردانه</h1>
+                        <p>
+                            وقتی صحبت از یک جنتلمن می شود ویژگی های زیادی متصور می شویم. شاید
+                            یکی از این ویژگی ها یک تیپ شیک و رسمی شامل: کت، شلوار پارچه ای یا
+                            کتان و از همه مهمتر یک پیراهن مردانه مجلسی یا رسمی می باشد که اغلب
+                            به رنگ های ساده نظیر سفید، مشکی یا سرمه ای هستند و برای ملاقات های
+                            رسمی و مجالس و مهمانی ها مورد استفاده می باشد.
+                        </p>
+                        <h1 class="mb-2">پیراهن مردانه آستین کوتاه</h1>
+                        <p>
+                            حتی تصور پوشیدن پیراهن آستین بلند در گرمای تابستان برای ما مرد ها
+                            آزار دهنده است.اما این دوست عزیز همیشه همراه ما می ماند. پیراهن
+                            های نخی آستین کوتاه به ما کمک می کند که انواع تیپ های ممکن رو در
+                            عین راحتی و خنکی داشته باشیم.
+                        </p>
+                    </div>
+                </div>
+            </div>
+    </main>
+
+    {% if items.has_other_pages %}
+        <ul class="pagination">
+            {% if items.has_previous %}
+                <li class="icon">
+                    <a href="?page={{ items.previous_page_number }}"><span class="fas fa-angle-left"></span></a>
+                </li>
+            {% else %}
+                <li class="icon disabled">
+                    <a><span class="fas fa-angle-left"></span></a>
+                </li>
+            {% endif %}
+            {% for i in items.paginator.page_range %}
+                {% if posts.number == i %}
+
+                    <li class="current"><a href="#">{{ i }}</a></li>
+                {% else %}
+                    <li class="page-item">
+                        <a href="?page={{ i }}" class="page-link">{{ i }}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+            {% if items.has_next %}
+                <li class="icon">
+                    <a href="?page={{ items.next_page_number }}"><span class="fas fa-angle-right"></span></a>
+                </li>
+            {% else %}
+                <li class="icon disabled">
+                    <a><span class="fas fa-angle-right"></span></a>
+                </li>
+            {% endif %}
+        </ul>
+    {% endif %}
+
+{% endblock %}

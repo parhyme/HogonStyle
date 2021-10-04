@@ -1,0 +1,395 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} محصولات |{% endblock %}
+
+{% block content %}
+    <body class="font-farsi overflow-x-hidden">
+    <div class="overlay"></div>
+    <div class="hover-overlay"></div>
+
+    <!-- login modal -->
+    <div class="modal tab-navigation w-1/4 xl:w-2/6 lg:w-2/4 md:w-5/6 lg:overflow-x-hidden" id="userAccountModal">
+        <button class="close-modal-btn"><i class="fa fa-times"></i></button>
+
+        <div class="tabs flex">
+            <button class="tab-btn flex-auto btn btn--md btn--secondary border-0 border-b-2 xs:btn--sm active">ورود
+            </button>
+            <button class="tab-btn flex-auto btn btn--md btn--secondary border-0 border-b-2 xs:btn--sm">ثبت نام</button>
+        </div>
+
+        <div class="pt-8">
+            <div class="tab-item active">
+                <form>
+                    <label class="block mb-4">
+                        <span class="input--label">شماره تلفن همران</span>
+                        <input type="number" class="form-input mt-1 block w-full text-left" style="direction: ltr"
+                               placeholder="۹۱۲ ۰۰۰ ۰۰۰۰" required data-err="لطفا شماره موبایل خود را وارد کنید">
+                    </label>
+
+                    <label class="block mb-4">
+                        <span class="input--label">رمز عبور</span>
+                        <input type="password" style="direction: ltr" class="form-input mt-1 block w-full" required
+                               data-err="لطفا رمز عبور خودتان را وارد کنید">
+                    </label>
+
+                    <a href="#" class="text-blue-500 inline-block">رمز عبور خود را فراموش کرده ام</a>
+                    <hr class="my-4"/>
+                    <button type="submit" class="btn btn--md btn--primary block w-full xs:btn--sm">ورود</button>
+                </form>
+            </div>
+
+            <div class="tab-item">
+                <form>
+                    <label class="block mb-4">
+                        <span class="input--label">شماره تلفن همران</span>
+                        <input type="number" class="form-input mt-1 block w-full text-left" style="direction: ltr"
+                               placeholder="۹۱۲ ۰۰۰ ۰۰۰۰" required data-err="لطفا شماره موبایل خود را وارد کنید">
+                    </label>
+                    <hr class="my-4"/>
+                    <button type="submit" class="btn btn--md btn--primary block w-full">ثبت نام</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- product modal -->
+    <div class="modal product-modal product-swiper lg:w-screen lg:max-h-[90vh] lg:overflow-y-scroll" id="productModal">
+        <div class="flex lg:grid lg:grid-cols-[70vh 1fr 0fr]">
+            <div class="close-modal-btn right-8 top-2 z-10"><i class="fa fa-times"></i></div>
+            <div class="swiper-container gallery-thumbs lg:hidden">
+                <div class="swiper-wrapper" style="align-sets: center">
+                    <div class="swiper-slide">
+                        <img src=" {% static 'assets/img/shirt/shirt-2--2--modal--1.jpg' %} " alt="slide 1"/>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src=" {% static 'assets/img/shirt/shirt-2--2--modal--2.jpg' %} " alt="slide 2"/>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src=" {% static 'assets/img/shirt/shirt-2--2--modal--3.jpg' %} " alt="slide 3"/>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src=" {% static 'assets/img/shirt/shirt-2--2--modal--4.jpg' %} " alt="slide 4"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="swiper-container gallery-top lg:w-full">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src=" {% static 'assets/img/shirt/shirt-2--2--modal--1.jpg' %} " alt="slide 1"/>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src=" {% static 'assets/img/shirt/shirt-2--2--modal--2.jpg' %} " alt="slide 2"/>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src=" {% static 'assets/img/shirt/shirt-2--2--modal--3.jpg' %} " alt="slide 3"/>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src=" {% static 'assets/img/shirt/shirt-2--2--modal--4.jpg' %} " alt="slide 4"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col">
+                <div class="product-content-inner overflow-y-scroll">
+                    <h1 class="text-xl font-bold">پیراهن ساده مردانه 21204</h1>
+                    <p class="text-2xs my-4">387,000 تومان</p>
+                    <hr/>
+                    <p class="mt-4 text-xs">رنگ انتخاب شده : <span class="font-bold">سرمه ای</span></p>
+                    <div class="selected-color">
+                        <label>
+                            <input type="radio" name="modal-selected-color">
+                            <img src=" {% static 'assets/img/shirt/shirt-color-1.jpg' %} " alt=""/>
+                        </label>
+
+                        <label>
+                            <input type="radio" name="modal-selected-color">
+                            <img src=" {% static 'assets/img/shirt/shirt-color-2.jpg' %} " alt=""/>
+                        </label>
+
+                        <label>
+                            <input type="radio" name="modal-selected-color">
+                            <img src=" {% static 'assets/img/shirt/shirt-color-3.jpg' %} " alt=""/>
+                        </label>
+
+                        <label>
+                            <input type="radio" name="modal-selected-color">
+                            <img src=" {% static 'assets/img/shirt/shirt-color-4.jpg' %} " alt=""/>
+                        </label>
+
+                    </div>
+
+                    <div class="modal-product-size flex my-4">
+                        <label>
+                            <input type="radio" name="type-clothe" disabled/>
+                            <span>M</span>
+                        </label>
+
+                        <label>
+                            <input type="radio" name="type-clothe"/>
+                            <span>S</span>
+                        </label>
+
+                        <label>
+                            <input type="radio" name="type-clothe"/>
+                            <span>Xl</span>
+                        </label>
+
+                        <label>
+                            <input type="radio" name="type-clothe" disabled/>
+                            <span>2Xl</span>
+                        </label>
+
+                        <label>
+                            <input type="radio" name="type-clothe"/>
+                            <span>3Xl</span>
+                        </label>
+                    </div>
+                    <button class="text-blue-500 underline text-sm" data-modal="sizeGuideModal"
+                            onclick="showModal(event)"><i
+                            class="fa fa-ruler text-xl text-gray-900 pointer-events-none"></i>راهنمای سایز
+                    </button>
+                    <hr class="mt-6"/>
+                    <div>
+                        <button class="accordion-btn btn w-full inline-block flex justify-between p-4 py-8">لباس<i
+                                class="fa fa-angle-down"></i></button>
+                        <div class="acc-panel transition-all">
+                            <div class="p-6 pt-2 text-2xs">
+                                <p>پیراهن آستین بلند مردانه، دارای یقه معمولی</p>
+
+                                <p>
+                                    مدل با قد 185 سانتی‌متر و وزن 75 کیلوگرم سایز M را پوشیده است
+                                </p>
+                                <p>
+                                    با توجه به تفاوت نمایش رنگ‌ها در صفحه نمایش دستگاه‌های مختلف،
+                                    رنگ محصولات در تصویر تا 20% با واقعیت متفاوت خواهد بود
+                                </p>
+
+                                <p>پیراهن آستین بلند مردانه، دارای یقه معمولی</p>
+
+                                <p>
+                                    مدل با قد 185 سانتی‌متر و وزن 75 کیلوگرم سایز M را پوشیده است
+                                </p>
+                                <p>
+                                    با توجه به تفاوت نمایش رنگ‌ها در صفحه نمایش دستگاه‌های مختلف،
+                                    رنگ محصولات در تصویر تا 20% با واقعیت متفاوت خواهد بود
+                                </p>
+
+                                <p>پیراهن آستین بلند مردانه، دارای یقه معمولی</p>
+
+                                <p>
+                                    مدل با قد 185 سانتی‌متر و وزن 75 کیلوگرم سایز M را پوشیده است
+                                </p>
+                                <p>
+                                    با توجه به تفاوت نمایش رنگ‌ها در صفحه نمایش دستگاه‌های مختلف،
+                                    رنگ محصولات در تصویر تا 20% با واقعیت متفاوت خواهد بود
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="mb-4"/>
+                    <a href="#" class="my-4 w-full btn btn--md btn--secondary">مشاهده تمامی اطلاعات محصول</a>
+                </div>
+
+                <a href="#" class="btn btn--md btn--tertiary w-full inline-block">افزودن به سبد خرید</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Size selection guide -->
+    <div class="modal p-0 w-7/12 xl:w-10/12 lg:w-11/12" id="sizeGuideModal">
+        <div class="flex flex-col">
+            <div class="close-modal-btn "><i class="fa fa-times"></i></div>
+            <div class="max-h-[90vh] overflow-y-scroll">
+                <div>
+                    <div class="flex sm:flex-col-reverse">
+                        <div class="w-1/2 sm:w-full bg-gray-100 lg:px-4 sm:py-6 flex sets-center justify-center">
+                            <div class="bg-white shadow-md p-6">
+                                <h1 class="text-xl">پیراهن ساده مردانه 21204</h1>
+                                <hr class="my-4">
+                                <p class="text-2xs">مدل با قد 185 سانتی‌متر و وزن 75 کیلوگرم سایز M را پوشیده است</p>
+                            </div>
+                        </div>
+
+                        <div class="flex w-1/2 sm:w-full">
+                            <div>
+                                <img src=" {% static 'assets/img/shirt/shirt-2--2--modal--2.jpg' %} " alt="">
+                            </div>
+
+                            <div>
+                                <img src=" {% static 'assets/img/shirt/shirt-2--2--modal--3.jpg' %} " alt="">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-navigation flex flex-col px-4 pt-8 pb-4">
+                        <div class="flex w-8/12 md:w-10/12 sm:w-full mx-auto">
+                            <button class="tab-btn btn btn--md btn--secondary border-0 border-b-2 flex-grow active">جدول
+                                سایز
+                            </button>
+                            <button class="tab-btn btn btn--md btn--secondary border-0 border-b-2 flex-grow">روش اندازه
+                                گیری
+                            </button>
+                        </div>
+
+                        <div class="pt-4">
+                            <div class="tab-item active">
+                                <div class="text-sm font-medium pt-4">
+                                    <p>لطفا طبق روش اندازه گیری ارائه شده سایز مناسب خود را از جدول زیر انتخاب
+                                        نمایید</p>
+                                    <ul class="leading-7">
+                                        <li class="list-disc list-inside">اندازه های ارائه شده در جدول زیر +/- ۱ سانتی
+                                            متر دارای خطا می باشد
+                                        </li>
+                                        <li class="list-disc list-inside">تمامی اندازه ها به سانتی متر می باشد</li>
+                                    </ul>
+                                    <hr class="my-4">
+                                    <table class="w-full table-bordered">
+                                        <thead>
+                                        <tr>
+                                            <th>سایز</th>
+                                            <th>عرض سینه</th>
+                                            <th>عرض کمر</th>
+                                            <th>طول لباس</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <th>M</th>
+                                            <td>52</td>
+                                            <td>51</td>
+                                            <td>76</td>
+                                        </tr>
+                                        <tr>
+                                            <th>L</th>
+                                            <td>54</td>
+                                            <td>53</td>
+                                            <td>77</td>
+                                        </tr>
+                                        <tr>
+                                            <th>XL</th>
+                                            <td>56</td>
+                                            <td>55</td>
+                                            <td>77</td>
+                                        </tr>
+                                        <tr>
+                                            <th>XXL</th>
+                                            <td>58</td>
+                                            <td>57</td>
+                                            <td>78</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="tab-item">
+                                <div>
+                                    <p class="text-sm">لطفا طبق تصویر زیر اندازه ها را به دست آورید . سپس با مقایسه
+                                        اندازه های خود با جدول
+                                        سایز ارائه شده، سایز مناسب خود را انتخاب نمایید.</p>
+
+                                    <div class="w-full">
+                                        <img src=" {% static 'assets/img/shirt/shirt-guide.jpg' %} " alt=""
+                                             class="w-full">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <ul class="breadcrumb bg-gray-100 w-full p-3 container">
+        <li class="text-sm transition-colors hover:text-gray-500"><a href="#">وب پوش</a></li>
+        <i class="breadcrumb-icon fa fa-angle-left"></i>
+        <li class="text-sm transition-colors hover:text-gray-500"><a href="#">محصولات</a></li>
+        <i class="breadcrumb-icon fa fa-angle-left"></i>
+        <li class="text-sm"><a>پیراهن</a></li>
+    </ul>
+
+    <!--main-->
+    <main class="container sets mt-24 grid grid-cols-3 md:grid-cols-2 gap-4">
+        {% if sets %}
+            {% for set in sets %}
+                <!-- set Info Modal -->
+                <div class="modal py-16 px-8 rounded-lg setinfo-modal w-4/6 md:w-10/12 sm:p-4" id="setInfoModal">
+                    <button class="close-modal-btn right-8 top-8"><i class="fa fa-times"></i></button>
+
+                    <div class="flex gap-12 sm:flex-col sm:overflow-y-scroll sm:max-h-[90vh]">
+                        <a href="#" class="w-5/12 sm:w-full">
+                            <img src="{{ set.image.url }}" alt="" class="w-full">
+                        </a>
+
+                        <div class="w-7/12 sm:w-full">
+                            <div class="swiper-container">
+                                <div class="swiper-wrapper">
+
+                                    {% for set_item in set.sets.all %}
+                                    <div class="swiper-slide">
+                                        <img src=" {{ set_item.image_1.url }} "
+                                             alt="slide 1"/>
+                                        <div class="text-center text-xs text-gray-900 space-y-1 pt-4">
+                                            <h1>{{ set_item.title }}</h1>
+                                            <p>{{ set_item.get_price }} تومان</p>
+                                        </div>
+                                    </div>
+                                        {% endfor %}
+
+                                </div>
+
+                                <div class="swiper-button-next"></div>
+                                <div class="swiper-button-prev"></div>
+                            </div>
+
+                            <a href="#" class="btn btn--md mt-4 btn--primary block mx-auto max-w-[10rem]">خرید</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="set-item"><img src="{{ set.image.url }}" alt=""></div>
+            {% endfor %}
+        {% endif %}
+
+
+    {% if sets.has_other_pages %}
+        <ul class="pagination">
+            {% if sets.has_previous %}
+                <li class="icon">
+                    <a href="?page={{ sets.previous_page_number }}"><span class="fas fa-angle-left"></span></a>
+                </li>
+            {% else %}
+                <li class="icon disabled">
+                    <a><span class="fas fa-angle-left"></span></a>
+                </li>
+            {% endif %}
+            {% for i in sets.paginator.page_range %}
+                {% if posts.number == i %}
+
+                    <li class="current"><a href="#">{{ i }}</a></li>
+                {% else %}
+                    <li class="page-item">
+                        <a href="?page={{ i }}" class="page-link">{{ i }}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+            {% if sets.has_next %}
+                <li class="icon">
+                    <a href="?page={{ sets.next_page_number }}"><span class="fas fa-angle-right"></span></a>
+                </li>
+            {% else %}
+                <li class="icon disabled">
+                    <a><span class="fas fa-angle-right"></span></a>
+                </li>
+            {% endif %}
+        </ul>
+    {% endif %}
+
+    </main>
+
+{% endblock %}
