@@ -98,21 +98,28 @@ class UserProfile(AbstractUser):
 
 
 class SiteSettings(models.Model):
-    pass
-
-
-class Slide(models.Model):
-    settgs = models.ForeignKey(SiteSettings, verbose_name="تنظیمات", on_delete=models.DO_NOTHING)
-    link = models.CharField("لینک", max_length=100, blank=True)
-    image = models.ImageField("عکس", help_text="Size: 1920x570")
-    is_active = models.BooleanField("فعال بودن", default=True)
-
-    def __str__(self):
-        return "{} - {}".format(self.caption1, self.caption2)
+    slide_image_1 = models.ImageField("عکس اسلاید 1", help_text="Size: 1903x630")
+    slide_image_2 = models.ImageField("عکس اسلاید 2", help_text="Size: 1903x630")
+    slide_image_3 = models.ImageField("عکس اسلاید 3", help_text="Size: 1903x630")
+    slide_image_4 = models.ImageField("عکس اسلاید 4", help_text="Size: 1903x630")
+    intro_image_4 = models.ImageField("عکس پاپ آپ", help_text="Size: 1000x700")
 
     class Meta:
-        verbose_name = "اسلاید"
-        verbose_name_plural = "اسلایدها"
+        verbose_name = "تنظیم سایت"
+        verbose_name_plural = "تنظیمات سایت"
+
+# class Slide(models.Model):
+#     settgs = models.ForeignKey(SiteSettings, verbose_name="تنظیمات", on_delete=models.DO_NOTHING)
+#     link = models.CharField("لینک", max_length=100, blank=True)
+#     image = models.ImageField("عکس", help_text="Size: 1920x570")
+#     is_active = models.BooleanField("فعال بودن", default=True)
+#
+#     def __str__(self):
+#         return "{} - {}".format(self.caption1, self.caption2)
+#
+#     class Meta:
+#         verbose_name = "اسلاید"
+#         verbose_name_plural = "اسلایدها"
 
 
 class Color(models.Model):

@@ -2152,6 +2152,10 @@ main.weblog .blog-feed > div:not(:first-child) {
     height: 8rem
 }
 
+.h-24{
+    height: 6rem;
+}
+
 .h-16 {
     height: 4rem
 }

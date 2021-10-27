@@ -5,963 +5,470 @@
 {% block title %} محصولات {% endblock %}
 
 {% block content %}
-<body class="font-farsi overflow-x-hidden" onload="showModal(event, 'closeStoreModal')">
-  <div class="overlay"></div>
-  <div class="hover-overlay"></div>
+    <body class="font-farsi overflow-x-hidden" onload="showModal(event, 'closeStoreModal')">
+    <div class="overlay"></div>
+    <div class="hover-overlay"></div>
 
-  <!-- real store close modal -->
-  <div class="modal w-1/2 lg:w-3/4 md:w-10/12 sm:w-11/12 p-0" id="closeStoreModal">
-    <div class="close-modal-btn right-8 top-8 z-10 text-white"><i class="fa fa-times"></i></div>
-    <div>
-      <img src=" {% static 'assets/img/slider/moharam.jpg' %} " alt="">
-    </div>
-  </div>
-
-  <!-- login modal -->
-  <div class="modal tab-navigation w-1/4 xl:w-2/6 lg:w-2/4 md:w-5/6 lg:overflow-x-hidden" id="userAccountModal">
-    <button class="close-modal-btn"><i class="fa fa-times"></i></button>
-
-    <div class="tabs flex">
-      <button class="tab-btn flex-auto btn btn--md btn--secondary border-0 border-b-2 xs:btn--sm active">ورود</button>
-      <button class="tab-btn flex-auto btn btn--md btn--secondary border-0 border-b-2 xs:btn--sm">ثبت نام</button>
-    </div>
-
-    <div class="pt-8">
-      <div class="tab-item active">
-        <form>
-          <label class="block mb-4">
-            <span class="input--label">شماره تلفن همران</span>
-            <input type="number"  class="form-input mt-1 block w-full text-left" style="direction: ltr"
-                   placeholder="۹۱۲ ۰۰۰ ۰۰۰۰" required data-err="لطفا شماره موبایل خود را وارد کنید">
-          </label>
-
-          <label class="block mb-4">
-            <span class="input--label">رمز عبور</span>
-            <input type="password"  style="direction: ltr" class="form-input mt-1 block w-full" required data-err="لطفا رمز عبور خودتان را وارد کنید">
-          </label>
-
-          <a href="#" class="text-blue-500 inline-block">رمز عبور خود را فراموش کرده ام</a>
-          <hr class="my-4" />
-          <button type="submit" class="btn btn--md btn--primary block w-full xs:btn--sm">ورود</button>
-        </form>
-      </div>
-
-      <div class="tab-item">
-        <form>
-          <label class="block mb-4">
-            <span class="input--label">شماره تلفن همران</span>
-            <input type="number" class="form-input mt-1 block w-full text-left" style="direction: ltr"
-                   placeholder="۹۱۲ ۰۰۰ ۰۰۰۰" required data-err="لطفا شماره موبایل خود را وارد کنید">
-          </label>
-          <hr class="my-4" />
-          <button type="submit" class="btn btn--md btn--primary block w-full">ثبت نام</button>
-        </form>
-      </div>
-    </div>
-  </div>
-
-  <!-- product modal -->
-  <div class="modal product-modal product-swiper lg:w-screen lg:max-h-[90vh] lg:overflow-y-scroll" id="productModal">
-    <div class="flex lg:grid lg:grid-cols-[70vh 1fr 0fr]">
-      <div class="close-modal-btn right-8 top-2 z-10"><i class="fa fa-times"></i></div>
-      <div class="swiper-container gallery-thumbs lg:hidden">
-        <div class="swiper-wrapper" style="align-items: center">
-          <div class="swiper-slide">
-            <img src=" {% static 'assets/img/shirt/shirt-2--2--modal--1.jpg' %} " alt="slide 1" />
-          </div>
-          <div class="swiper-slide">
-            <img src=" {% static 'assets/img/shirt/shirt-2--2--modal--2.jpg' %} " alt="slide 2" />
-          </div>
-          <div class="swiper-slide">
-            <img src=" {% static 'assets/img/shirt/shirt-2--2--modal--3.jpg' %} " alt="slide 3" />
-          </div>
-          <div class="swiper-slide">
-            <img src=" {% static 'assets/img/shirt/shirt-2--2--modal--4.jpg' %} " alt="slide 4" />
-          </div>
-        </div>
-      </div>
-
-      <div class="swiper-container gallery-top lg:w-full">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <img src=" {% static 'assets/img/shirt/shirt-2--2--modal--1.jpg' %} " alt="slide 1" />
-          </div>
-          <div class="swiper-slide">
-            <img src=" {% static 'assets/img/shirt/shirt-2--2--modal--2.jpg' %} " alt="slide 2" />
-          </div>
-          <div class="swiper-slide">
-            <img src=" {% static 'assets/img/shirt/shirt-2--2--modal--3.jpg' %} " alt="slide 3" />
-          </div>
-          <div class="swiper-slide">
-            <img src=" {% static 'assets/img/shirt/shirt-2--2--modal--4.jpg' %} " alt="slide 4" />
-          </div>
-        </div>
-      </div>
-
-      <div class="flex flex-col">
-        <div class="product-content-inner overflow-y-scroll">
-          <h1 class="text-xl font-bold">پیراهن ساده مردانه 21204</h1>
-          <p class="text-2xs my-4">387,000 تومان</p>
-          <hr />
-          <p class="mt-4 text-xs">رنگ انتخاب شده : <span class="font-bold">سرمه ای</span></p>
-          <div class="selected-color">
-            <label>
-              <input type="radio" name="modal-selected-color">
-              <img src=" {% static 'assets/img/shirt/shirt-color-1.jpg' %} " alt="" />
-            </label>
-
-            <label>
-              <input type="radio" name="modal-selected-color">
-              <img src=" {% static 'assets/img/shirt/shirt-color-2.jpg' %} " alt="" />
-            </label>
-
-            <label>
-              <input type="radio" name="modal-selected-color">
-              <img src=" {% static 'assets/img/shirt/shirt-color-3.jpg' %} " alt="" />
-            </label>
-
-            <label>
-              <input type="radio" name="modal-selected-color">
-              <img src=" {% static 'assets/img/shirt/shirt-color-4.jpg' %} " alt="" />
-            </label>
-
-          </div>
-
-          <div class="modal-product-size flex my-4">
-            <label>
-              <input type="radio" name="type-clothe" disabled />
-              <span>M</span>
-            </label>
-
-            <label>
-              <input type="radio" name="type-clothe" />
-              <span>S</span>
-            </label>
-
-            <label>
-              <input type="radio" name="type-clothe" />
-              <span>Xl</span>
-            </label>
-
-            <label>
-              <input type="radio" name="type-clothe" disabled />
-              <span>2Xl</span>
-            </label>
-
-            <label>
-              <input type="radio" name="type-clothe" />
-              <span>3Xl</span>
-            </label>
-          </div>
-          <button class="text-blue-500 underline text-sm" data-modal="sizeGuideModal" onclick="showModal(event)"><i
-              class="fa fa-ruler text-xl text-gray-900 pointer-events-none"></i>راهنمای سایز
-          </button>
-          <hr class="mt-6" />
-          <div>
-            <button class="accordion-btn btn w-full inline-block flex justify-between p-4 py-8">لباس<i
-                class="fa fa-angle-down"></i></button>
-            <div class="acc-panel transition-all">
-              <div class="p-6 pt-2 text-2xs">
-                <p>پیراهن آستین بلند مردانه، دارای یقه معمولی</p>
-
-                <p>
-                  مدل با قد 185 سانتی‌متر و وزن 75 کیلوگرم سایز M را پوشیده است
-                </p>
-                <p>
-                  با توجه به تفاوت نمایش رنگ‌ها در صفحه نمایش دستگاه‌های مختلف،
-                  رنگ محصولات در تصویر تا 20% با واقعیت متفاوت خواهد بود
-                </p>
-
-                <p>پیراهن آستین بلند مردانه، دارای یقه معمولی</p>
-
-                <p>
-                  مدل با قد 185 سانتی‌متر و وزن 75 کیلوگرم سایز M را پوشیده است
-                </p>
-                <p>
-                  با توجه به تفاوت نمایش رنگ‌ها در صفحه نمایش دستگاه‌های مختلف،
-                  رنگ محصولات در تصویر تا 20% با واقعیت متفاوت خواهد بود
-                </p>
-
-                <p>پیراهن آستین بلند مردانه، دارای یقه معمولی</p>
-
-                <p>
-                  مدل با قد 185 سانتی‌متر و وزن 75 کیلوگرم سایز M را پوشیده است
-                </p>
-                <p>
-                  با توجه به تفاوت نمایش رنگ‌ها در صفحه نمایش دستگاه‌های مختلف،
-                  رنگ محصولات در تصویر تا 20% با واقعیت متفاوت خواهد بود
-                </p>
-              </div>
-            </div>
-          </div>
-          <hr class="mb-4" />
-          <a href="#" class="my-4 w-full btn btn--md btn--secondary">مشاهده تمامی اطلاعات محصول</a>
-        </div>
-
-        <a href="#" class="btn btn--md btn--tertiary w-full inline-block">افزودن به سبد خرید</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Size selection guide -->
-  <div class="modal p-0 w-7/12 xl:w-10/12 lg:w-11/12" id="sizeGuideModal">
-    <div class="flex flex-col">
-      <div class="close-modal-btn "><i class="fa fa-times"></i></div>
-      <div class="max-h-[90vh] overflow-y-scroll">
+    <!-- real store close modal -->
+    <div class="modal w-1/2 lg:w-3/4 md:w-10/12 sm:w-11/12 p-0" id="closeStoreModal">
+        <div class="close-modal-btn right-8 top-8 z-10 text-white"><i class="fa fa-times"></i></div>
         <div>
-          <div class="flex sm:flex-col-reverse">
-            <div class="w-1/2 sm:w-full bg-gray-100 lg:px-4 sm:py-6 flex items-center justify-center">
-              <div class="bg-white shadow-md p-6">
-                <h1 class="text-xl">پیراهن ساده مردانه 21204</h1>
-                <hr class="my-4">
-                <p class="text-2xs">مدل با قد 185 سانتی‌متر و وزن 75 کیلوگرم سایز M را پوشیده است</p>
-              </div>
-            </div>
+            <img src="{{ site_settings.intro_image_4.url }}" alt="">
+        </div>
+    </div>
 
-            <div class="flex w-1/2 sm:w-full">
-              <div>
-                <img src=" {% static 'assets/img/shirt/shirt-2--2--modal--2.jpg' %} " alt="">
-              </div>
 
-              <div>
-                <img src=" {% static 'assets/img/shirt/shirt-2--2--modal--3.jpg' %} " alt="">
-              </div>
-            </div>
-          </div>
-
-          <div class="tab-navigation flex flex-col px-4 pt-8 pb-4">
-            <div class="flex w-8/12 md:w-10/12 sm:w-full mx-auto">
-              <button class="tab-btn btn btn--md btn--secondary border-0 border-b-2 flex-grow active">جدول سایز</button>
-              <button class="tab-btn btn btn--md btn--secondary border-0 border-b-2 flex-grow">روش اندازه گیری</button>
-            </div>
-
-            <div class="pt-4">
-              <div class="tab-item active">
-                <div class="text-sm font-medium pt-4">
-                  <p>لطفا طبق روش اندازه گیری ارائه شده سایز مناسب خود را از جدول زیر انتخاب نمایید</p>
-                  <ul class="leading-7">
-                    <li class="list-disc list-inside">اندازه های ارائه شده در جدول زیر +/- ۱ سانتی متر دارای خطا می باشد
-                    </li>
-                    <li class="list-disc list-inside">تمامی اندازه ها به سانتی متر می باشد</li>
-                  </ul>
-                  <hr class="my-4">
-                  <table class="w-full table-bordered">
-                    <thead>
-                      <tr>
-                        <th>سایز</th>
-                        <th>عرض سینه</th>
-                        <th>عرض کمر</th>
-                        <th>طول لباس</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th>M</th>
-                        <td>52</td>
-                        <td>51</td>
-                        <td>76</td>
-                      </tr>
-                      <tr>
-                        <th>L</th>
-                        <td>54</td>
-                        <td>53</td>
-                        <td>77</td>
-                      </tr>
-                      <tr>
-                        <th>XL</th>
-                        <td>56</td>
-                        <td>55</td>
-                        <td>77</td>
-                      </tr>
-                      <tr>
-                        <th>XXL</th>
-                        <td>58</td>
-                        <td>57</td>
-                        <td>78</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-
-              <div class="tab-item">
+    <!-- Size selection guide -->
+    <div class="modal p-0 w-7/12 xl:w-10/12 lg:w-11/12" id="sizeGuideModal">
+        <div class="flex flex-col">
+            <div class="close-modal-btn "><i class="fa fa-times"></i></div>
+            <div class="max-h-[90vh] overflow-y-scroll">
                 <div>
-                  <p class="text-sm">لطفا طبق تصویر زیر اندازه ها را به دست آورید . سپس با مقایسه اندازه های خود با جدول
-                    سایز ارائه شده، سایز مناسب خود را انتخاب نمایید.</p>
+                    <div class="flex sm:flex-col-reverse">
+                        <div class="w-1/2 sm:w-full bg-gray-100 lg:px-4 sm:py-6 flex items-center justify-center">
+                            <div class="bg-white shadow-md p-6">
+                                <h1 class="text-xl">پیراهن ساده مردانه 21204</h1>
+                                <hr class="my-4">
+                                <p class="text-2xs">مدل با قد 185 سانتی‌متر و وزن 75 کیلوگرم سایز M را پوشیده است</p>
+                            </div>
+                        </div>
 
-                  <div class="w-full">
-                    <img src=" {% static 'assets/img/shirt/shirt-guide.jpg' %} " alt="" class="w-full">
-                  </div>
+                        <div class="flex w-1/2 sm:w-full">
+                            <div>
+                                <img src=" {% static 'assets/img/shirt/shirt-2--2--modal--2.jpg' %} " alt="">
+                            </div>
+
+                            <div>
+                                <img src=" {% static 'assets/img/shirt/shirt-2--2--modal--3.jpg' %} " alt="">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-navigation flex flex-col px-4 pt-8 pb-4">
+                        <div class="flex w-8/12 md:w-10/12 sm:w-full mx-auto">
+                            <button class="tab-btn btn btn--md btn--secondary border-0 border-b-2 flex-grow active">جدول
+                                سایز
+                            </button>
+                            <button class="tab-btn btn btn--md btn--secondary border-0 border-b-2 flex-grow">روش اندازه
+                                گیری
+                            </button>
+                        </div>
+
+                        <div class="pt-4">
+                            <div class="tab-item active">
+                                <div class="text-sm font-medium pt-4">
+                                    <p>لطفا طبق روش اندازه گیری ارائه شده سایز مناسب خود را از جدول زیر انتخاب
+                                        نمایید</p>
+                                    <ul class="leading-7">
+                                        <li class="list-disc list-inside">اندازه های ارائه شده در جدول زیر +/- ۱ سانتی
+                                            متر دارای خطا می باشد
+                                        </li>
+                                        <li class="list-disc list-inside">تمامی اندازه ها به سانتی متر می باشد</li>
+                                    </ul>
+                                    <hr class="my-4">
+                                    <table class="w-full table-bordered">
+                                        <thead>
+                                        <tr>
+                                            <th>سایز</th>
+                                            <th>عرض سینه</th>
+                                            <th>عرض کمر</th>
+                                            <th>طول لباس</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <th>M</th>
+                                            <td>52</td>
+                                            <td>51</td>
+                                            <td>76</td>
+                                        </tr>
+                                        <tr>
+                                            <th>L</th>
+                                            <td>54</td>
+                                            <td>53</td>
+                                            <td>77</td>
+                                        </tr>
+                                        <tr>
+                                            <th>XL</th>
+                                            <td>56</td>
+                                            <td>55</td>
+                                            <td>77</td>
+                                        </tr>
+                                        <tr>
+                                            <th>XXL</th>
+                                            <td>58</td>
+                                            <td>57</td>
+                                            <td>78</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="tab-item">
+                                <div>
+                                    <p class="text-sm">لطفا طبق تصویر زیر اندازه ها را به دست آورید . سپس با مقایسه
+                                        اندازه های خود با جدول
+                                        سایز ارائه شده، سایز مناسب خود را انتخاب نمایید.</p>
+
+                                    <div class="w-full">
+                                        <img src=" {% static 'assets/img/shirt/shirt-guide.jpg' %} " alt=""
+                                             class="w-full">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- main -->
-  <main class="px-0 index main-products">
-    <div class="container md:p-0">
-      <div class="swiper-container header-slider">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <div>
-              <img src=" {% static 'assets/img/slider/haraj.jpg' %} " alt=""
-                class="sm:h-[40vh] sm:w-full sm:object-cover sm:object-center">
-            </div>
-          </div>
-            <div class="swiper-slide">
-            <div>
-              <img src=" {% static 'assets/img/slider/haraj.jpg' %} " alt=""
-                class="sm:h-[40vh] sm:w-full sm:object-cover sm:object-center">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div
-      class="container flex justify-around py-8 px-24 lg:px-4 lg:flex-wrap lg:gap-y-16 lg:py-16 xs:flex-col xs:max-w-sm">
-      <div class="flex justify-center items-center gap-4 xs:w-full xs:justify-start">
-        <span class="text-5xl"><i class="fa fa-phone"></i></span>
-        <div>
-          <h1 class="text-lg font-bold">خدمات پس از فروش</h1>
-          <h2 class="text-sm text-gray-500 mt-2">پشتیبانی 7 روز هفته</h2>
-        </div>
-      </div>
-
-      <div class="flex justify-center items-center gap-4 xs:w-full xs:justify-start">
-        <span class="text-5xl"><i class="fa fa-sync"></i></span>
-        <div>
-          <h1 class="text-lg font-bold">7 روز ضمانت بازگشت کالا</h1>
-          <h2 class="text-sm text-gray-500 mt-2">بازگشت بدون قید و شرط کالا</h2>
-        </div>
-      </div>
-
-      <div class="flex justify-center items-center gap-4 lg:w-full xs:justify-start">
-        <span class="text-5xl"><i class="fa fa-truck-moving"></i></span>
-        <div>
-          <h1 class="text-lg font-bold">تحویل آسان و سریع</h1>
-          <h2 class="text-sm text-gray-500 mt-2">ارسال رایگان برای خرید بیش از 300 هزار تومان</h2>
-        </div>
-      </div>
-    </div>
-
-    <div class="py-8 bg-gray-100">
-      <div class="container flex gap-8 items-center">
-        <hr class="flex-grow">
-        <h1 class="text-xl font-bold">دسته بندی کالاها</h1>
-        <hr class="flex-grow">
-      </div>
-
-      <div class="container grid grid-cols-4 md:grid-cols-2 gap-8 lg:gap-4 py-8">
-        <a href="#" class="overflow-hidden">
-          <img src=" {% static 'assets/site/banner-1.jpg' %} " alt="" class="w-full transition-transform duration-300 hover:scale-105">
-        </a>
-
-        <a href="#" class="overflow-hidden">
-          <img src=" {% static 'assets/site/banner-2.jpg' %} " alt="" class="w-full transition-transform duration-300 hover:scale-105">
-        </a>
-
-        <a href="#" class="overflow-hidden">
-          <img src=" {% static 'assets/site/banner-3.jpg' %} " alt="" class="w-full transition-transform duration-300 hover:scale-105">
-        </a>
-
-        <a href="#" class="overflow-hidden">
-          <img src=" {% static 'assets/site/banner-4.jpg' %} " alt="" class="w-full transition-transform duration-300 hover:scale-105">
-        </a>
-      </div>
-    </div>
-
-    <div class="py-8 mt-8">
-      <div class="container flex gap-8 items-center">
-        <hr class="flex-grow">
-        <h1 class="text-xl font-bold">جدیدترین محصولات</h1>
-        <hr class="flex-grow">
-      </div>
-
-      <div class="container pt-8">
-        <div class="swiper-container new-product-slider">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <div>
-                <div class="product-item">
-                  <!--product inner-->
-                  <a href="#" class="product-image">
-                    <img src=" {% static 'assets/img/shirt/shirt-1--1.jpg' %} " alt="" />
-                    <img class="product-image-hover-state" src=" {% static 'assets/img/shirt/shirt-1--2.jpg' %} " alt="" />
-
-                    <button class="btn btn--sm btn--primary product-btn lg:hidden flex items-center justify-center">
-                      <span>مشاهده سریع &nbsp;</span>
-                      <span class="flex mt-0.5"><i class="fa fa-search"></i></span>
-                    </button>
-                  </a>
-                  <div class="product-content">
-                    <a href="#" class="product-title">پیراهن مردانه 23219</a>
-                    <p class="product-price">377,000 تومان</p>
-                    <div class="product-colors">
-                      <img src=" {% static 'assets/img/shirt/shirt-color-1.jpg' %} " alt="" />
-                      <img src=" {% static 'assets/img/shirt/shirt-color-2.jpg' %} " alt="" />
-                      <img src=" {% static 'assets/img/shirt/shirt-color-3.jpg' %} " alt="" />
-                      <img src=" {% static 'assets/img/shirt/shirt-color-4.jpg' %} " alt="" />
-                    </div>
-                    <div class="product-sizes">
-                      <span>M</span>
-                      <span>L</span>
-                      <span>XL</span>
-                      <span>2XL</span>
-                      <span>3Xl</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="swiper-slide">
-              <div>
-                <div class="product-item">
-                  <!--product inner-->
-                  <a href="#" class="product-image">
-                    <img src=" {% static 'assets/img/shirt/shirt-1--1.jpg' %} " alt="" />
-                    <img class="product-image-hover-state" src=" {% static 'assets/img/shirt/shirt-1--2.jpg' %} " alt="" />
-
-                    <button class="btn btn--sm btn--primary product-btn lg:hidden flex items-center justify-center">
-                      <span>مشاهده سریع &nbsp;</span>
-                      <span class="flex mt-0.5"><i class="fa fa-search"></i></span>
-                    </button>
-                  </a>
-                  <div class="product-content">
-                    <a href="#" class="product-title">پیراهن مردانه 23219</a>
-                    <p class="product-price">377,000 تومان</p>
-                    <div class="product-colors">
-                      <img src=" {% static 'assets/img/shirt/shirt-color-1.jpg' %} " alt="" />
-                      <img src=" {% static 'assets/img/shirt/shirt-color-2.jpg' %} " alt="" />
-                      <img src=" {% static 'assets/img/shirt/shirt-color-3.jpg' %} " alt="" />
-                      <img src=" {% static 'assets/img/shirt/shirt-color-4.jpg' %} " alt="" />
-                    </div>
-                    <div class="product-sizes">
-                      <span>M</span>
-                      <span>L</span>
-                      <span>XL</span>
-                      <span>2XL</span>
-                      <span>3Xl</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="swiper-slide">
-              <div>
-                <div class="product-item">
-                  <!--product inner-->
-                  <a href="#" class="product-image">
-                    <img src=" {% static 'assets/img/shirt/shirt-1--1.jpg' %} " alt="" />
-                    <img class="product-image-hover-state" src=" {% static 'assets/img/shirt/shirt-1--2.jpg' %} " alt="" />
-
-                    <button class="btn btn--sm btn--primary product-btn lg:hidden flex items-center justify-center">
-                      <span>مشاهده سریع &nbsp;</span>
-                      <span class="flex mt-0.5"><i class="fa fa-search"></i></span>
-                    </button>
-                  </a>
-                  <div class="product-content">
-                    <a href="#" class="product-title">پیراهن مردانه 23219</a>
-                    <p class="product-price">377,000 تومان</p>
-                    <div class="product-colors">
-                      <img src=" {% static 'assets/img/shirt/shirt-color-1.jpg' %} " alt="" />
-                      <img src=" {% static 'assets/img/shirt/shirt-color-2.jpg' %} " alt="" />
-                      <img src=" {% static 'assets/img/shirt/shirt-color-3.jpg' %} " alt="" />
-                      <img src=" {% static 'assets/img/shirt/shirt-color-4.jpg' %} " alt="" />
-                    </div>
-                    <div class="product-sizes">
-                      <span>M</span>
-                      <span>L</span>
-                      <span>XL</span>
-                      <span>2XL</span>
-                      <span>3Xl</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="swiper-slide">
-              <div>
-                <div class="product-item">
-                  <!--product inner-->
-                  <a href="#" class="product-image">
-                    <img src=" {% static 'assets/img/shirt/shirt-1--1.jpg' %} " alt="" />
-                    <img class="product-image-hover-state" src=" {% static 'assets/img/shirt/shirt-1--2.jpg' %} " alt="" />
-
-                    <button class="btn btn--sm btn--primary product-btn lg:hidden flex items-center justify-center">
-                      <span>مشاهده سریع &nbsp;</span>
-                      <span class="flex mt-0.5"><i class="fa fa-search"></i></span>
-                    </button>
-                  </a>
-                  <div class="product-content">
-                    <a href="#" class="product-title">پیراهن مردانه 23219</a>
-                    <p class="product-price">377,000 تومان</p>
-                    <div class="product-colors">
-                      <img src=" {% static 'assets/img/shirt/shirt-color-1.jpg' %} " alt="" />
-                      <img src=" {% static 'assets/img/shirt/shirt-color-2.jpg' %} " alt="" />
-                      <img src=" {% static 'assets/img/shirt/shirt-color-3.jpg' %} " alt="" />
-                      <img src=" {% static 'assets/img/shirt/shirt-color-4.jpg' %} " alt="" />
-                    </div>
-                    <div class="product-sizes">
-                      <span>M</span>
-                      <span>L</span>
-                      <span>XL</span>
-                      <span>2XL</span>
-                      <span>3Xl</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="swiper-slide">
-              <div>
-                <div class="product-item">
-                  <!--product inner-->
-                  <a href="#" class="product-image">
-                    <img src=" {% static 'assets/img/shirt/shirt-1--1.jpg' %} " alt="" />
-                    <img class="product-image-hover-state" src=" {% static 'assets/img/shirt/shirt-1--2.jpg' %} " alt="" />
-
-                    <button class="btn btn--sm btn--primary product-btn lg:hidden flex items-center justify-center">
-                      <span>مشاهده سریع &nbsp;</span>
-                      <span class="flex mt-0.5"><i class="fa fa-search"></i></span>
-                    </button>
-                  </a>
-                  <div class="product-content">
-                    <a href="#" class="product-title">پیراهن مردانه 23219</a>
-                    <p class="product-price">377,000 تومان</p>
-                    <div class="product-colors">
-                      <img src=" {% static 'assets/img/shirt/shirt-color-1.jpg' %} " alt="" />
-                      <img src=" {% static 'assets/img/shirt/shirt-color-2.jpg' %} " alt="" />
-                      <img src=" {% static 'assets/img/shirt/shirt-color-3.jpg' %} " alt="" />
-                      <img src=" {% static 'assets/img/shirt/shirt-color-4.jpg' %} " alt="" />
-                    </div>
-                    <div class="product-sizes">
-                      <span>M</span>
-                      <span>L</span>
-                      <span>XL</span>
-                      <span>2XL</span>
-                      <span>3Xl</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="swiper-slide">
-              <div>
-                <div class="product-item">
-                  <!--product inner-->
-                  <a href="#" class="product-image">
-                    <img src=" {% static 'assets/img/shirt/shirt-1--1.jpg' %} " alt="" />
-                    <img class="product-image-hover-state" src=" {% static 'assets/img/shirt/shirt-1--2.jpg' %} " alt="" />
-
-                    <button class="btn btn--sm btn--primary product-btn lg:hidden flex items-center justify-center">
-                      <span>مشاهده سریع &nbsp;</span>
-                      <span class="flex mt-0.5"><i class="fa fa-search"></i></span>
-                    </button>
-                  </a>
-                  <div class="product-content">
-                    <a href="#" class="product-title">پیراهن مردانه 23219</a>
-                    <p class="product-price">377,000 تومان</p>
-                    <div class="product-colors">
-                      <img src=" {% static 'assets/img/shirt/shirt-color-1.jpg' %} " alt="" />
-                      <img src=" {% static 'assets/img/shirt/shirt-color-2.jpg' %} " alt="" />
-                      <img src=" {% static 'assets/img/shirt/shirt-color-3.jpg' %} " alt="" />
-                      <img src=" {% static 'assets/img/shirt/shirt-color-4.jpg' %} " alt="" />
-                    </div>
-                    <div class="product-sizes">
-                      <span>M</span>
-                      <span>L</span>
-                      <span>XL</span>
-                      <span>2XL</span>
-                      <span>3Xl</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="swiper-slide">
-              <div>
-                <div class="product-item">
-                  <!--product inner-->
-                  <a href="#" class="product-image">
-                    <img src=" {% static 'assets/img/shirt/shirt-1--1.jpg' %} " alt="" />
-                    <img class="product-image-hover-state" src=" {% static 'assets/img/shirt/shirt-1--2.jpg' %} " alt="" />
-
-                    <button class="btn btn--sm btn--primary product-btn lg:hidden flex items-center justify-center">
-                      <span>مشاهده سریع &nbsp;</span>
-                      <span class="flex mt-0.5"><i class="fa fa-search"></i></span>
-                    </button>
-                  </a>
-                  <div class="product-content">
-                    <a href="#" class="product-title">پیراهن مردانه 23219</a>
-                    <p class="product-price">377,000 تومان</p>
-                    <div class="product-colors">
-                      <img src=" {% static 'assets/img/shirt/shirt-color-1.jpg' %} " alt="" />
-                      <img src=" {% static 'assets/img/shirt/shirt-color-2.jpg' %} " alt="" />
-                      <img src=" {% static 'assets/img/shirt/shirt-color-3.jpg' %} " alt="" />
-                      <img src=" {% static 'assets/img/shirt/shirt-color-4.jpg' %} " alt="" />
-                    </div>
-                    <div class="product-sizes">
-                      <span>M</span>
-                      <span>L</span>
-                      <span>XL</span>
-                      <span>2XL</span>
-                      <span>3Xl</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="swiper-slide">
-              <div>
-                <div class="product-item">
-                  <!--product inner-->
-                  <a href="#" class="product-image">
-                    <img src=" {% static 'assets/img/shirt/shirt-1--1.jpg' %} " alt="" />
-                    <img class="product-image-hover-state" src=" {% static 'assets/img/shirt/shirt-1--2.jpg' %} " alt="" />
-
-                    <button class="btn btn--sm btn--primary product-btn lg:hidden flex items-center justify-center">
-                      <span>مشاهده سریع &nbsp;</span>
-                      <span class="flex mt-0.5"><i class="fa fa-search"></i></span>
-                    </button>
-                  </a>
-                  <div class="product-content">
-                    <a href="#" class="product-title">پیراهن مردانه 23219</a>
-                    <p class="product-price">377,000 تومان</p>
-                    <div class="product-colors">
-                      <img src=" {% static 'assets/img/shirt/shirt-color-1.jpg' %} " alt="" />
-                      <img src=" {% static 'assets/img/shirt/shirt-color-2.jpg' %} " alt="" />
-                      <img src=" {% static 'assets/img/shirt/shirt-color-3.jpg' %} " alt="" />
-                      <img src=" {% static 'assets/img/shirt/shirt-color-4.jpg' %} " alt="" />
-                    </div>
-                    <div class="product-sizes">
-                      <span>M</span>
-                      <span>L</span>
-                      <span>XL</span>
-                      <span>2XL</span>
-                      <span>3Xl</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
 
-    <div class="">
-      <div class="container grid grid-cols-3 gap-8 md:grid-cols-1">
-        <a href="#" class="overflow-hidden">
-          <img src=" {% static 'assets/site/banner-sel-1.jpg' %} " alt="" class="w-full transition-transform duration-300 hover:scale-105">
-        </a>
-
-        <a href="#" class="overflow-hidden">
-          <img src=" {% static 'assets/site/banner-sel-2.jpg' %} " alt="" class="w-full transition-transform duration-300 hover:scale-105">
-        </a>
-
-        <a href="#" class="overflow-hidden">
-          <img src=" {% static 'assets/site/banner-sel-3.jpg' %} " alt="" class="w-full transition-transform duration-300 hover:scale-105">
-        </a>
-      </div>
-    </div>
-
-    <div class="py-8 mt-8">
-      <div class="container flex gap-8 items-center">
-        <hr class="flex-grow">
-        <h1 class="text-xl font-bold">پرفروش ترین محصولات</h1>
-        <hr class="flex-grow">
-      </div>
-
-      <div class="container pt-8">
-        <div class="swiper-container high-sell-product-slider">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <div>
-                <div class="product-item">
-                  <!--product inner-->
-                  <a href="#" class="product-image">
-                    <img src=" {% static 'assets/img/shirt/shirt-1--1.jpg' %} " alt="" />
-                    <img class="product-image-hover-state" src=" {% static 'assets/img/shirt/shirt-1--2.jpg' %} " alt="" />
-
-                    <button class="btn btn--sm btn--primary product-btn lg:hidden flex items-center justify-center">
-                      <span>مشاهده سریع &nbsp;</span>
-                      <span class="flex mt-0.5"><i class="fa fa-search"></i></span>
-                    </button>
-                  </a>
-                  <div class="product-content">
-                    <a href="#" class="product-title">پیراهن مردانه 23219</a>
-                    <p class="product-price">377,000 تومان</p>
-                    <div class="product-colors">
-                      <img src=" {% static 'assets/img/shirt/shirt-color-1.jpg' %} " alt="" />
-                      <img src=" {% static 'assets/img/shirt/shirt-color-2.jpg' %} " alt="" />
-                      <img src=" {% static 'assets/img/shirt/shirt-color-3.jpg' %} " alt="" />
-                      <img src=" {% static 'assets/img/shirt/shirt-color-4.jpg' %} " alt="" />
+    <!-- main -->
+    <main class="px-0 index main-products">
+        <div class="container md:p-0">
+            <div class="swiper-container header-slider">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div>
+                            <img src="{{ site_settings.slide_image_1 }}" alt=""
+                                 class="sm:h-[40vh] sm:w-full sm:object-cover sm:object-center">
+                        </div>
                     </div>
-                    <div class="product-sizes">
-                      <span>M</span>
-                      <span>L</span>
-                      <span>XL</span>
-                      <span>2XL</span>
-                      <span>3Xl</span>
+                    <div class="swiper-slide">
+                        <div>
+                            <img src="{{ site_settings.slide_image_2 }}" alt=""
+                                 class="sm:h-[40vh] sm:w-full sm:object-cover sm:object-center">
+                        </div>
                     </div>
-                  </div>
+                    <div class="swiper-slide">
+                        <div>
+                            <img src="{{ site_settings.slide_image_3 }}" alt=""
+                                 class="sm:h-[40vh] sm:w-full sm:object-cover sm:object-center">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div>
+                            <img src="{{ site_settings.slide_image_4 }}" alt=""
+                                 class="sm:h-[40vh] sm:w-full sm:object-cover sm:object-center">
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-
-            <div class="swiper-slide">
-              <div>
-                <div class="product-item">
-                  <!--product inner-->
-                  <a href="#" class="product-image">
-                    <img src=" {% static 'assets/img/shirt/shirt-1--1.jpg' %} " alt="" />
-                    <img class="product-image-hover-state" src=" {% static 'assets/img/shirt/shirt-1--2.jpg' %} " alt="" />
-
-                    <button class="btn btn--sm btn--primary product-btn lg:hidden flex items-center justify-center">
-                      <span>مشاهده سریع &nbsp;</span>
-                      <span class="flex mt-0.5"><i class="fa fa-search"></i></span>
-                    </button>
-                  </a>
-                  <div class="product-content">
-                    <a href="#" class="product-title">پیراهن مردانه 23219</a>
-                    <p class="product-price">377,000 تومان</p>
-                    <div class="product-colors">
-                      <img src=" {% static 'assets/img/shirt/shirt-color-1.jpg' %} " alt="" />
-                      <img src=" {% static 'assets/img/shirt/shirt-color-2.jpg' %} " alt="" />
-                      <img src=" {% static 'assets/img/shirt/shirt-color-3.jpg' %} " alt="" />
-                      <img src=" {% static 'assets/img/shirt/shirt-color-4.jpg' %} " alt="" />
-                    </div>
-                    <div class="product-sizes">
-                      <span>M</span>
-                      <span>L</span>
-                      <span>XL</span>
-                      <span>2XL</span>
-                      <span>3Xl</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="swiper-slide">
-              <div>
-                <div class="product-item">
-                  <!--product inner-->
-                  <a href="#" class="product-image">
-                    <img src=" {% static 'assets/img/shirt/shirt-1--1.jpg' %} " alt="" />
-                    <img class="product-image-hover-state" src=" {% static 'assets/img/shirt/shirt-1--2.jpg' %} " alt="" />
-
-                    <button class="btn btn--sm btn--primary product-btn lg:hidden flex items-center justify-center">
-                      <span>مشاهده سریع &nbsp;</span>
-                      <span class="flex mt-0.5"><i class="fa fa-search"></i></span>
-                    </button>
-                  </a>
-                  <div class="product-content">
-                    <a href="#" class="product-title">پیراهن مردانه 23219</a>
-                    <p class="product-price">377,000 تومان</p>
-                    <div class="product-colors">
-                      <img src=" {% static 'assets/img/shirt/shirt-color-1.jpg' %} " alt="" />
-                      <img src=" {% static 'assets/img/shirt/shirt-color-2.jpg' %} " alt="" />
-                      <img src=" {% static 'assets/img/shirt/shirt-color-3.jpg' %} " alt="" />
-                      <img src=" {% static 'assets/img/shirt/shirt-color-4.jpg' %} " alt="" />
-                    </div>
-                    <div class="product-sizes">
-                      <span>M</span>
-                      <span>L</span>
-                      <span>XL</span>
-                      <span>2XL</span>
-                      <span>3Xl</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="swiper-slide">
-              <div>
-                <div class="product-item">
-                  <!--product inner-->
-                  <a href="#" class="product-image">
-                    <img src=" {% static 'assets/img/shirt/shirt-1--1.jpg' %} " alt="" />
-                    <img class="product-image-hover-state" src=" {% static 'assets/img/shirt/shirt-1--2.jpg' %} " alt="" />
-
-                    <button class="btn btn--sm btn--primary product-btn lg:hidden flex items-center justify-center">
-                      <span>مشاهده سریع &nbsp;</span>
-                      <span class="flex mt-0.5"><i class="fa fa-search"></i></span>
-                    </button>
-                  </a>
-                  <div class="product-content">
-                    <a href="#" class="product-title">پیراهن مردانه 23219</a>
-                    <p class="product-price">377,000 تومان</p>
-                    <div class="product-colors">
-                      <img src=" {% static 'assets/img/shirt/shirt-color-1.jpg' %} " alt="" />
-                      <img src=" {% static 'assets/img/shirt/shirt-color-2.jpg' %} " alt="" />
-                      <img src=" {% static 'assets/img/shirt/shirt-color-3.jpg' %} " alt="" />
-                      <img src=" {% static 'assets/img/shirt/shirt-color-4.jpg' %} " alt="" />
-                    </div>
-                    <div class="product-sizes">
-                      <span>M</span>
-                      <span>L</span>
-                      <span>XL</span>
-                      <span>2XL</span>
-                      <span>3Xl</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="swiper-slide">
-              <div>
-                <div class="product-item">
-                  <!--product inner-->
-                  <a href="#" class="product-image">
-                    <img src=" {% static 'assets/img/shirt/shirt-1--1.jpg' %} " alt="" />
-                    <img class="product-image-hover-state" src=" {% static 'assets/img/shirt/shirt-1--2.jpg' %} " alt="" />
-
-                    <button class="btn btn--sm btn--primary product-btn lg:hidden flex items-center justify-center">
-                      <span>مشاهده سریع &nbsp;</span>
-                      <span class="flex mt-0.5"><i class="fa fa-search"></i></span>
-                    </button>
-                  </a>
-                  <div class="product-content">
-                    <a href="#" class="product-title">پیراهن مردانه 23219</a>
-                    <p class="product-price">377,000 تومان</p>
-                    <div class="product-colors">
-                      <img src=" {% static 'assets/img/shirt/shirt-color-1.jpg' %} " alt="" />
-                      <img src=" {% static 'assets/img/shirt/shirt-color-2.jpg' %} " alt="" />
-                      <img src=" {% static 'assets/img/shirt/shirt-color-3.jpg' %} " alt="" />
-                      <img src=" {% static 'assets/img/shirt/shirt-color-4.jpg' %} " alt="" />
-                    </div>
-                    <div class="product-sizes">
-                      <span>M</span>
-                      <span>L</span>
-                      <span>XL</span>
-                      <span>2XL</span>
-                      <span>3Xl</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="swiper-slide">
-              <div>
-                <div class="product-item">
-                  <!--product inner-->
-                  <a href="#" class="product-image">
-                    <img src=" {% static 'assets/img/shirt/shirt-1--1.jpg' %} " alt="" />
-                    <img class="product-image-hover-state" src=" {% static 'assets/img/shirt/shirt-1--2.jpg' %} " alt="" />
-
-                    <button class="btn btn--sm btn--primary product-btn lg:hidden flex items-center justify-center">
-                      <span>مشاهده سریع &nbsp;</span>
-                      <span class="flex mt-0.5"><i class="fa fa-search"></i></span>
-                    </button>
-                  </a>
-                  <div class="product-content">
-                    <a href="#" class="product-title">پیراهن مردانه 23219</a>
-                    <p class="product-price">377,000 تومان</p>
-                    <div class="product-colors">
-                      <img src=" {% static 'assets/img/shirt/shirt-color-1.jpg' %} " alt="" />
-                      <img src=" {% static 'assets/img/shirt/shirt-color-2.jpg' %} " alt="" />
-                      <img src=" {% static 'assets/img/shirt/shirt-color-3.jpg' %} " alt="" />
-                      <img src=" {% static 'assets/img/shirt/shirt-color-4.jpg' %} " alt="" />
-                    </div>
-                    <div class="product-sizes">
-                      <span>M</span>
-                      <span>L</span>
-                      <span>XL</span>
-                      <span>2XL</span>
-                      <span>3Xl</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="swiper-slide">
-              <div>
-                <div class="product-item">
-                  <!--product inner-->
-                  <a href="#" class="product-image">
-                    <img src=" {% static 'assets/img/shirt/shirt-1--1.jpg' %} " alt="" />
-                    <img class="product-image-hover-state" src=" {% static 'assets/img/shirt/shirt-1--2.jpg' %} " alt="" />
-
-                    <button class="btn btn--sm btn--primary product-btn lg:hidden flex items-center justify-center">
-                      <span>مشاهده سریع &nbsp;</span>
-                      <span class="flex mt-0.5"><i class="fa fa-search"></i></span>
-                    </button>
-                  </a>
-                  <div class="product-content">
-                    <a href="#" class="product-title">پیراهن مردانه 23219</a>
-                    <p class="product-price">377,000 تومان</p>
-                    <div class="product-colors">
-                      <img src=" {% static 'assets/img/shirt/shirt-color-1.jpg' %} " alt="" />
-                      <img src=" {% static 'assets/img/shirt/shirt-color-2.jpg' %} " alt="" />
-                      <img src=" {% static 'assets/img/shirt/shirt-color-3.jpg' %} " alt="" />
-                      <img src=" {% static 'assets/img/shirt/shirt-color-4.jpg' %} " alt="" />
-                    </div>
-                    <div class="product-sizes">
-                      <span>M</span>
-                      <span>L</span>
-                      <span>XL</span>
-                      <span>2XL</span>
-                      <span>3Xl</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="swiper-slide">
-              <div>
-                <div class="product-item">
-                  <!--product inner-->
-                  <a href="#" class="product-image">
-                    <img src=" {% static 'assets/img/shirt/shirt-1--1.jpg' %} " alt="" />
-                    <img class="product-image-hover-state" src=" {% static 'assets/img/shirt/shirt-1--2.jpg' %} " alt="" />
-
-                    <button class="btn btn--sm btn--primary product-btn lg:hidden flex items-center justify-center">
-                      <span>مشاهده سریع &nbsp;</span>
-                      <span class="flex mt-0.5"><i class="fa fa-search"></i></span>
-                    </button>
-                  </a>
-                  <div class="product-content">
-                    <a href="#" class="product-title">پیراهن مردانه 23219</a>
-                    <p class="product-price">377,000 تومان</p>
-                    <div class="product-colors">
-                      <img src=" {% static 'assets/img/shirt/shirt-color-1.jpg' %} " alt="" />
-                      <img src=" {% static 'assets/img/shirt/shirt-color-2.jpg' %} " alt="" />
-                      <img src=" {% static 'assets/img/shirt/shirt-color-3.jpg' %} " alt="" />
-                      <img src=" {% static 'assets/img/shirt/shirt-color-4.jpg' %} " alt="" />
-                    </div>
-                    <div class="product-sizes">
-                      <span>M</span>
-                      <span>L</span>
-                      <span>XL</span>
-                      <span>2XL</span>
-                      <span>3Xl</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </main>
-</body>
+
+        <div
+                class="container flex justify-around py-8 px-24 lg:px-4 lg:flex-wrap lg:gap-y-16 lg:py-16 xs:flex-col xs:max-w-sm">
+            <div class="flex justify-center items-center gap-4 xs:w-full xs:justify-start">
+                <span class="text-5xl"><i class="fa fa-phone"></i></span>
+                <div>
+                    <h1 class="text-lg font-bold">خدمات پس از فروش</h1>
+                    <h2 class="text-sm text-gray-500 mt-2">پشتیبانی 7 روز هفته</h2>
+                </div>
+            </div>
+
+            <div class="flex justify-center items-center gap-4 xs:w-full xs:justify-start">
+                <span class="text-5xl"><i class="fa fa-sync"></i></span>
+                <div>
+                    <h1 class="text-lg font-bold">7 روز ضمانت بازگشت کالا</h1>
+                    <h2 class="text-sm text-gray-500 mt-2">بازگشت بدون قید و شرط کالا</h2>
+                </div>
+            </div>
+
+            <div class="flex justify-center items-center gap-4 lg:w-full xs:justify-start">
+                <span class="text-5xl"><i class="fa fa-truck-moving"></i></span>
+                <div>
+                    <h1 class="text-lg font-bold">تحویل آسان و سریع</h1>
+                    <h2 class="text-sm text-gray-500 mt-2">ارسال رایگان برای خرید بیش از 300 هزار تومان</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="py-8 bg-gray-100">
+            <div class="container flex gap-8 items-center">
+                <hr class="flex-grow">
+                <h1 class="text-xl font-bold">دسته بندی کالاها</h1>
+                <hr class="flex-grow">
+            </div>
+
+            <div class="container grid grid-cols-4 md:grid-cols-2 gap-8 lg:gap-4 py-8">
+                <a href="#" class="overflow-hidden">
+                    <img src=" {% static 'assets/site/banner-1.jpg' %} " alt=""
+                         class="w-full transition-transform duration-300 hover:scale-105">
+                </a>
+
+                <a href="#" class="overflow-hidden">
+                    <img src=" {% static 'assets/site/banner-2.jpg' %} " alt=""
+                         class="w-full transition-transform duration-300 hover:scale-105">
+                </a>
+
+                <a href="#" class="overflow-hidden">
+                    <img src=" {% static 'assets/site/banner-3.jpg' %} " alt=""
+                         class="w-full transition-transform duration-300 hover:scale-105">
+                </a>
+
+                <a href="#" class="overflow-hidden">
+                    <img src=" {% static 'assets/site/banner-4.jpg' %} " alt=""
+                         class="w-full transition-transform duration-300 hover:scale-105">
+                </a>
+            </div>
+        </div>
+
+        <div class="py-8 mt-8">
+            <div class="container flex gap-8 items-center">
+                <hr class="flex-grow">
+                <h1 class="text-xl font-bold">جدیدترین محصولات</h1>
+                <hr class="flex-grow">
+            </div>
+
+            <div class="container pt-8">
+                <div class="swiper-container new-product-slider">
+                    <div class="swiper-wrapper">
+                        {% if last_items %}
+                            {% for item in last_items %}
+
+                                <div class="swiper-slide">
+                                    <div>
+                                        <div class="product-item">
+                                            <!-- product modal -->
+                                            <div class="modal product-modal product-swiper lg:w-screen lg:max-h-[90vh] lg:overflow-y-scroll"
+                                                 id="{{ item.id }}">
+                                                <form action="{% url 'add-to-cart' item.id %}" method="post">
+                                                    {% csrf_token %}
+                                                    <div class="flex lg:grid lg:grid-cols-[70vh 1fr 0fr]">
+                                                        <div class="close-modal-btn right-8 top-2 z-10"><i
+                                                                class="fa fa-times"></i>
+                                                        </div>
+                                                        <div class="swiper-container gallery-thumbs lg:hidden">
+                                                            <div class="swiper-wrapper" style="align-items: center">
+                                                                <div class="swiper-slide">
+                                                                    <img src="{{ item.image_1.url }}"
+                                                                         alt="slide 1"/>
+                                                                </div>
+                                                                <div class="swiper-slide">
+                                                                    <img src="{{ item.image_2.url }}"
+                                                                         alt="slide 2"/>
+                                                                </div>
+                                                                <div class="swiper-slide">
+                                                                    <img src="{{ item.image_3.url }}"
+                                                                         alt="slide 3"/>
+                                                                </div>
+                                                                <div class="swiper-slide">
+                                                                    <img src="{{ item.image_4.url }}"
+                                                                         alt="slide 4"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="swiper-container gallery-top lg:w-full">
+                                                            <div class="swiper-wrapper">
+                                                                {#                                            {% for img in imags %}#}
+                                                                {#                                                {% if img.post.id == item.id %}#}
+                                                                {#                                                    <div class="swiper-slide">#}
+                                                                {#                                                        <img src="{{ img.images.url }}"#}
+                                                                {#                                                             alt="slide 1"/>#}
+                                                                {#                                                    </div>#}
+                                                                {#                                                {% endif %}#}
+                                                                {#                                            {% endfor %}#}
+                                                                <div class="swiper-slide">
+                                                                    <img src="{{ item.image_1.url }}"
+                                                                         alt="slide 1"/>
+                                                                </div>
+                                                                <div class="swiper-slide">
+                                                                    <img src="{{ item.image_2.url }}"
+                                                                         alt="slide 2"/>
+                                                                </div>
+                                                                <div class="swiper-slide">
+                                                                    <img src="{{ item.image_3.url }}"
+                                                                         alt="slide 3"/>
+                                                                </div>
+                                                                <div class="swiper-slide">
+                                                                    <img src="{{ item.image_4.url }}"
+                                                                         alt="slide 4"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="flex flex-col">
+                                                            <div class="product-content-inner overflow-y-scroll">
+                                                                <h1 class="text-xl font-bold">{{ item.title }}</h1>
+                                                                <p class="text-2xs my-4">{{ item.price }} تومان </p>
+                                                                <hr/>
+                                                                {% for color in item.colors.all %}
+                                                                    <label>
+                                                                        <input type="radio" name="color"
+                                                                               value="{{ color.tag }}">
+                                                                        {% if color.color == '#000000' %}
+                                                                            <span style="background: {{ color.color }};color: white;border-radius: 3px;border: 1px solid black;font-size: small">{{ color.tag }}</span>
+                                                                        {% else %}
+                                                                            <span style="background: {{ color.color }};border-radius: 3px;border: 1px solid black;font-size: small">{{ color.tag }}</span>
+                                                                        {% endif %}
+
+                                                                    </label>
+
+                                                                {% endfor %}
+
+                                                                <div class="modal-product-size flex my-4">
+                                                                    {% for size in item.sizes.all %}
+                                                                        <label>
+                                                                            <input type="radio" name="size"
+                                                                                   value="{{ size.name }}"/>
+                                                                            <span>{{ size.name }}</span>
+                                                                        </label>
+                                                                    {% endfor %}
+
+
+                                                                </div>
+                                                                <button type="button"
+                                                                        class="text-blue-500 underline text-sm"
+                                                                        data-modal="sizeGuideModal"
+                                                                        onclick="showModal(event)"><i
+                                                                        class="fa fa-ruler text-xl text-gray-900 pointer-events-none"></i>راهنمای
+                                                                    سایز
+                                                                </button>
+                                                                <hr class="mt-6"/>
+                                                                <div>
+                                                                    <button type="button"
+                                                                            class="accordion-btn btn w-full inline-block flex justify-between p-4 py-8">
+                                                                        جزئیات<i
+                                                                            class="fa fa-angle-down"></i></button>
+                                                                    <div class="acc-panel transition-all">
+                                                                        <div class="p-6 pt-2 text-2xs">
+                                                                            <p>پیراهن آستین بلند مردانه، دارای یقه
+                                                                                معمولی</p>
+
+                                                                            <p>
+                                                                                مدل با قد 185 سانتی‌متر و وزن 75 کیلوگرم
+                                                                                سایز M را
+                                                                                پوشیده
+                                                                                است
+                                                                            </p>
+                                                                            <p>
+                                                                                با توجه به تفاوت نمایش رنگ‌ها در صفحه
+                                                                                نمایش
+                                                                                دستگاه‌های
+                                                                                مختلف،
+                                                                                رنگ محصولات در تصویر تا 20% با واقعیت
+                                                                                متفاوت
+                                                                                خواهد بود
+                                                                            </p>
+
+                                                                            <p>پیراهن آستین بلند مردانه، دارای یقه
+                                                                                معمولی</p>
+
+                                                                            <p>
+                                                                                مدل با قد 185 سانتی‌متر و وزن 75 کیلوگرم
+                                                                                سایز M را
+                                                                                پوشیده
+                                                                                است
+                                                                            </p>
+                                                                            <p>
+                                                                                با توجه به تفاوت نمایش رنگ‌ها در صفحه
+                                                                                نمایش
+                                                                                دستگاه‌های
+                                                                                مختلف،
+                                                                                رنگ محصولات در تصویر تا 20% با واقعیت
+                                                                                متفاوت
+                                                                                خواهد بود
+                                                                            </p>
+
+                                                                            <p>پیراهن آستین بلند مردانه، دارای یقه
+                                                                                معمولی</p>
+
+                                                                            <p>
+                                                                                مدل با قد 185 سانتی‌متر و وزن 75 کیلوگرم
+                                                                                سایز M را
+                                                                                پوشیده
+                                                                                است
+                                                                            </p>
+                                                                            <p>
+                                                                                با توجه به تفاوت نمایش رنگ‌ها در صفحه
+                                                                                نمایش
+                                                                                دستگاه‌های
+                                                                                مختلف،
+                                                                                رنگ محصولات در تصویر تا 20% با واقعیت
+                                                                                متفاوت
+                                                                                خواهد بود
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <hr class="mb-4"/>
+                                                                <a href="{% url 'product-detail' item.id %}"
+                                                                   class="my-4 w-full btn btn--md btn--secondary">مشاهده
+                                                                    تمامی
+                                                                    اطلاعات محصول</a>
+                                                            </div>
+                                                            <button type="submit">
+                                                                <a class="btn btn--md btn--tertiary w-full inline-block">افزودن
+                                                                    به
+                                                                    سبد خرید</a>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+
+                                            <!--product inner-->
+                                            <a href="{% url 'product-detail' item.id %}" class="product-image">
+                                                <img src="{{ item.image_1.url }}" alt=""/>
+                                                <img class="product-image-hover-state"
+                                                     src="{{ item.image_2.url }}" alt=""/>
+
+{#                                                <button class="btn btn--sm btn--primary product-btn lg:hidden flex items-center justify-center"#}
+{#                                                        data-modal="{{ item.id }}"#}
+{#                                                        data-id="{{ item.id }}"#}
+{#                                                        data-target="#{{ item.id }}"#}
+{#                                                        onclick="showModal(event)">#}
+{#                                                    <span>مشاهده سریع &nbsp;</span>#}
+{#                                                    <span class="flex mt-0.5"><i class="fa fa-search"></i></span>#}
+{#                                                </button>#}
+                                            </a>
+                                            <div class="product-content">
+                                                <a href="{% url 'product-detail' item.id %}" class="product-title">{{ item.title }}</a>
+                                                <p class="product-price">{{ item.get_price }} تومان</p>
+                                                <div class="product-colors">
+                                                    {% for color in item.colors.all %}
+                                                        <span style="background: {{ color.color }};border-radius: 3px;border: 1px solid black;font-size: small">...</span>
+                                                    {% endfor %}
+                                                </div>
+                                                <div class="product-sizes">
+                                                    {% for size in item.sizes.all %}
+                                                        <span>{{ size.name }}</span>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            <div>محصولی موجود نیست</div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="">
+            <div class="container grid grid-cols-3 gap-8 md:grid-cols-1">
+                <a href="#" class="overflow-hidden">
+                    <img src=" {% static 'assets/site/banner-sel-1.jpg' %} " alt=""
+                         class="w-full transition-transform duration-300 hover:scale-105">
+                </a>
+
+                <a href="#" class="overflow-hidden">
+                    <img src=" {% static 'assets/site/banner-sel-2.jpg' %} " alt=""
+                         class="w-full transition-transform duration-300 hover:scale-105">
+                </a>
+
+                <a href="#" class="overflow-hidden">
+                    <img src=" {% static 'assets/site/banner-sel-3.jpg' %} " alt=""
+                         class="w-full transition-transform duration-300 hover:scale-105">
+                </a>
+            </div>
+        </div>
+
+    </main>
+    </body>
 {% endblock %}

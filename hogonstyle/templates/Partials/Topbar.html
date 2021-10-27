@@ -176,7 +176,7 @@
         </ul>
     </div>
 
-    <nav class="self-center w-full h-32">
+    <nav class="self-center w-full h-24">
         <div class="flex justify-between items-center container">
             <div class="hidden md:block" data-modal="mobileMenu" onclick="showModal(event)">
                 <span class="text-3xl pointer-events-none"><i class="fa fa-bars"></i></span>
@@ -408,7 +408,7 @@
                                 <div class="space-y-2">
                                     <!--item-->
                                     <div class="">
-                                        <img src="{{ order_item.image_0.url }}" alt="das" class="w-full">
+                                        <img src="{{ order_item.item.image_1.url }}" alt="das" class="w-full">
                                     </div>
                                     <div class="relative">
                                         <h1 class="text-2xs">{{ order_item.item.title }}</h1>

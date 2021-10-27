@@ -111,7 +111,7 @@ navActions.forEach(item => {
 });
 
 function showOverLay() {
-  if (window.innerWidth > 767) {
+  if (window.innerWidth > 1200) {
     const navOffset = nav.offsetTop;
     if (window.pageYOffset >= navOffset) {
       hoverOverlay.style.top = nav.clientHeight + 'px';
@@ -124,7 +124,7 @@ function showOverLay() {
 }
 
 function hideOverLay() {
-  if (window.innerWidth > 767) {
+  if (window.innerWidth > 1200) {
     const navOffset = nav.offsetTop;
     if (window.pageYOffset >= navOffset) {
       hoverOverlay.style.top = nav.clientHeight + 'px';
@@ -145,7 +145,7 @@ navigationItem.forEach(item => {
   }
 
   function showSubOverLay() {
-    if (window.innerWidth > 767) {
+    if (window.innerWidth > 1200) {
       const navOffset = nav.offsetTop;
       if (window.pageYOffset >= navOffset) {
         hoverOverlay.style.top = nav.clientHeight + subMenu.scrollHeight + 'px';
@@ -159,7 +159,7 @@ navigationItem.forEach(item => {
   }
 
   function hideSubOverLay() {
-    if (window.innerWidth > 767) {
+    if (window.innerWidth > 1200) {
       const navOffset = nav.offsetTop;
       if (window.pageYOffset >= navOffset) {
         hoverOverlay.style.top = nav.clientHeight + subMenu.scrollHeight + 'px';

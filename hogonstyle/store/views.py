@@ -10,7 +10,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 
-from .models import Item, UserProfile, Order, OrderItem, Set, SetOrderItems, Address, Size, Color
+from .models import Item, UserProfile, Order, OrderItem, Set, SetOrderItems, Address, Size, Color, SiteSettings
 
 
 def id_generator(size=6, chars=string.digits):
@@ -92,20 +92,16 @@ def logout(request):
 
 
 def index(request):
-    if not request.user.is_anonymous:
-        try:
-            order = Order.objects.get(user=request.user, ordered=False)
-            order_items = order.items.all()
-            context = {
-                'order': order,
-                'order_items': order_items
-            }
-            return render(request, 'index.html', context)
-        except Order.DoesNotExist:
-            return render(request, 'index.html')
+    settings = SiteSettings.objects.all()
+    site_settings = settings[0]
 
-    else:
-        return render(request, 'index.html')
+    last_products = Item.objects.order_by('-id')[:4]
+    context = {
+        'site_settings': site_settings,
+        'last_items': last_products,
+    }
+    get_orders(context, request)
+    return render(request, 'index.html', context)
 
 
 def sets(request):
@@ -250,8 +246,8 @@ def add_to_cart(request, id):
     order_item, created = OrderItem.objects.get_or_create(
         item=item,
         user=request.user,
-        size=request.POST["size"],
-        color=request.POST["color"],
+        size=request.POST.get("size"),
+        color=request.POST.get("color"),
     )
     order_qs = Order.objects.filter(user=request.user, ordered=False)
     if order_qs.exists():
@@ -261,18 +257,18 @@ def add_to_cart(request, id):
             order_item.quantity += 1
             order_item.save()
             messages.info(request, "This item quantity was updated.")
-            return redirect("index")
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
         else:
             order.items.add(order_item)
             messages.info(request, "This item was added to your cart.")
-            return redirect("index")
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
     else:
         ordered_date = timezone.now()
         order = Order.objects.create(
             user=request.user, code=get_id(size=8))
         order.items.add(order_item)
         messages.info(request, "This item was added to your cart.")
-        return redirect("index")
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
 # @login_required

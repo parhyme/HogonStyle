@@ -173,7 +173,7 @@
 
                     </div>
 
-                <div>
+                    <div>
                         <button type="button"
                                 class="btn--icon justify-between accordion-btn w-full py-4 px-4 bg-gray-100 hover:bg-gray-200 text-sm">
                             رنگ<i
@@ -190,8 +190,7 @@
                         </div>
 
                     </div>
-                <button type="submit" class="btn btn--md btn--tertiary">اعمال فیلتر</button>
-
+                    <button type="submit" class="btn btn--md btn--tertiary">اعمال فیلتر</button>
 
 
                 </div>
@@ -207,140 +206,318 @@
                     {% if items %}
                         {% for item in items %}
                             <!-- product modal -->
+
+                            {#                            <div class="modal product-modal product-swiper lg:w-screen lg:max-h-[90vh] lg:overflow-y-scroll"#}
+                            {#                         id="{{ item.id }}">#}
+                            {#                                <form action="{% url 'add-to-cart' item.id %}" method="post">#}
+                            {#                                    {% csrf_token %}#}
+                            {##}
+                            {##}
+                            {#                                    <div class="flex lg:grid lg:grid-cols-[70vh 1fr 0fr]">#}
+                            {#                                        <div class="close-modal-btn right-8 top-2 z-10"><i class="fa fa-times"></i>#}
+                            {#                                        </div>#}
+                            {#                                        <div class="swiper-container gallery-thumbs lg:hidden">#}
+                            {#                                            <div class="swiper-wrapper" style="align-items: center">#}
+                            {#                                                <div class="swiper-slide">#}
+                            {#                                                    <img src="{{ item.image_1.url }}"#}
+                            {#                                                         alt="slide 1"/>#}
+                            {#                                                </div>#}
+                            {#                                                <div class="swiper-slide">#}
+                            {#                                                    <img src="{{ item.image_2.url }}"#}
+                            {#                                                         alt="slide 2"/>#}
+                            {#                                                </div>#}
+                            {#                                                <div class="swiper-slide">#}
+                            {#                                                    <img src="{{ item.image_3.url }}"#}
+                            {#                                                         alt="slide 3"/>#}
+                            {#                                                </div>#}
+                            {#                                                <div class="swiper-slide">#}
+                            {#                                                    <img src="{{ item.image_4.url }}"#}
+                            {#                                                         alt="slide 4"/>#}
+                            {#                                                </div>#}
+                            {#                                            </div>#}
+                            {#                                        </div>#}
+                            {##}
+                            {#                                        <div class="swiper-container gallery-top lg:w-full">#}
+                            {#                                            <div class="swiper-wrapper">#}
+                            {#                                                <div class="swiper-slide">#}
+                            {#                                                    <img src="{{ item.image_1.url }}"#}
+                            {#                                                         alt="slide 1"/>#}
+                            {#                                                </div>#}
+                            {#                                                <div class="swiper-slide">#}
+                            {#                                                    <img src="{{ item.image_2.url }}"#}
+                            {#                                                         alt="slide 2"/>#}
+                            {#                                                </div>#}
+                            {#                                                <div class="swiper-slide">#}
+                            {#                                                    <img src="{{ item.image_3.url }}"#}
+                            {#                                                         alt="slide 3"/>#}
+                            {#                                                </div>#}
+                            {#                                                <div class="swiper-slide">#}
+                            {#                                                    <img src="{{ item.image_4.url }}"#}
+                            {#                                                         alt="slide 4"/>#}
+                            {#                                                </div>#}
+                            {#                                            </div>#}
+                            {#                                        </div>#}
+                            {##}
+                            {#                                        <div class="flex flex-col">#}
+                            {#                                            <div class="product-content-inner overflow-y-scroll">#}
+                            {#                                                <h1 class="text-xl font-bold">{{ item.title }}</h1>#}
+                            {#                                                <p class="text-2xs my-4">{{ item.price }} تومان </p>#}
+                            {#                                                <hr/>#}
+                            {#                                                {% for color in item.colors.all %}#}
+                            {#                                                    <label>#}
+                            {#                                                        <input type="radio" name="color">#}
+                            {#                                                        {% if color.color == '#000000' %}#}
+                            {#                                                            <span style="background: {{ color.color }};color: white;border-radius: 3px;border: 1px solid black;font-size: small">{{ color.tag }}</span>#}
+                            {#                                                        {% else %}#}
+                            {#                                                            <span style="background: {{ color.color }};border-radius: 3px;border: 1px solid black;font-size: small">{{ color.tag }}</span>#}
+                            {#                                                        {% endif %}#}
+                            {##}
+                            {#                                                    </label>#}
+                            {##}
+                            {#                                                {% endfor %}#}
+                            {##}
+                            {#                                                <div class="modal-product-size flex my-4">#}
+                            {#                                                    {% for size in item.sizes.all %}#}
+                            {#                                                        <label>#}
+                            {#                                                            <input type="radio" name="size"/>#}
+                            {#                                                            <span>{{ size.name }}</span>#}
+                            {#                                                        </label>#}
+                            {#                                                    {% endfor %}#}
+                            {##}
+                            {##}
+                            {#                                                </div>#}
+                            {#                                                <button class="text-blue-500 underline text-sm"#}
+                            {#                                                        data-modal="sizeGuideModal"#}
+                            {#                                                        onclick="showModal(event)"><i#}
+                            {#                                                        class="fa fa-ruler text-xl text-gray-900 pointer-events-none"></i>راهنمای#}
+                            {#                                                    سایز#}
+                            {#                                                </button>#}
+                            {#                                                <hr class="mt-6"/>#}
+                            {#                                                <div>#}
+                            {#                                                    <button class="accordion-btn btn w-full inline-block flex justify-between p-4 py-8">#}
+                            {#                                                        لباس<i#}
+                            {#                                                            class="fa fa-angle-down"></i></button>#}
+                            {#                                                    <div class="acc-panel transition-all">#}
+                            {#                                                        <div class="p-6 pt-2 text-2xs">#}
+                            {#                                                            <p>پیراهن آستین بلند مردانه، دارای یقه معمولی</p>#}
+                            {##}
+                            {#                                                            <p>#}
+                            {#                                                                مدل با قد 185 سانتی‌متر و وزن 75 کیلوگرم سایز M را#}
+                            {#                                                                پوشیده#}
+                            {#                                                                است#}
+                            {#                                                            </p>#}
+                            {#                                                            <p>#}
+                            {#                                                                با توجه به تفاوت نمایش رنگ‌ها در صفحه نمایش دستگاه‌های#}
+                            {#                                                                مختلف،#}
+                            {#                                                                رنگ محصولات در تصویر تا 20% با واقعیت متفاوت خواهد بود#}
+                            {#                                                            </p>#}
+                            {##}
+                            {#                                                            <p>پیراهن آستین بلند مردانه، دارای یقه معمولی</p>#}
+                            {##}
+                            {#                                                            <p>#}
+                            {#                                                                مدل با قد 185 سانتی‌متر و وزن 75 کیلوگرم سایز M را#}
+                            {#                                                                پوشیده#}
+                            {#                                                                است#}
+                            {#                                                            </p>#}
+                            {#                                                            <p>#}
+                            {#                                                                با توجه به تفاوت نمایش رنگ‌ها در صفحه نمایش دستگاه‌های#}
+                            {#                                                                مختلف،#}
+                            {#                                                                رنگ محصولات در تصویر تا 20% با واقعیت متفاوت خواهد بود#}
+                            {#                                                            </p>#}
+                            {##}
+                            {#                                                            <p>پیراهن آستین بلند مردانه، دارای یقه معمولی</p>#}
+                            {##}
+                            {#                                                            <p>#}
+                            {#                                                                مدل با قد 185 سانتی‌متر و وزن 75 کیلوگرم سایز M را#}
+                            {#                                                                پوشیده#}
+                            {#                                                                است#}
+                            {#                                                            </p>#}
+                            {#                                                            <p>#}
+                            {#                                                                با توجه به تفاوت نمایش رنگ‌ها در صفحه نمایش دستگاه‌های#}
+                            {#                                                                مختلف،#}
+                            {#                                                                رنگ محصولات در تصویر تا 20% با واقعیت متفاوت خواهد بود#}
+                            {#                                                            </p>#}
+                            {#                                                        </div>#}
+                            {#                                                    </div>#}
+                            {#                                                </div>#}
+                            {#                                                <hr class="mb-4"/>#}
+                            {#                                                <a href="{% url 'product-detail' item.id %}"#}
+                            {#                                                   class="my-4 w-full btn btn--md btn--secondary">مشاهده تمامی#}
+                            {#                                                    اطلاعات محصول</a>#}
+                            {#                                            </div>#}
+                            {##}
+                            {##}
+                            {#                                            {% if user.is_authenticated %}#}
+                            {#                                                <button type="submit"#}
+                            {#                                                        class="btn btn--md btn--tertiary w-full inline-block">#}
+                            {#                                                    افزودن#}
+                            {#                                                    به سبد#}
+                            {#                                                    خرید#}
+                            {#                                                </button>#}
+                            {#                                            {% else %}#}
+                            {#                                                <button type="button"#}
+                            {#                                                        class="btn btn--md btn--tertiary w-full inline-block" disabled>#}
+                            {#                                                    برای افزودن به سبد خرید وارد شوید یا ثبت نام کنید#}
+                            {#                                                </button>#}
+                            {#                                            {% endif %}#}
+                            {#                                        </div>#}
+                            {#                                    </div>#}
+                            {#                                </form>#}
+                            {##}
+                            {#                            </div>#}
+
                             <div class="modal product-modal product-swiper lg:w-screen lg:max-h-[90vh] lg:overflow-y-scroll"
-                                 id="productModal">
-                                <div class="flex lg:grid lg:grid-cols-[70vh 1fr 0fr]">
-                                    <div class="close-modal-btn right-8 top-2 z-10"><i class="fa fa-times"></i></div>
-                                    <div class="swiper-container gallery-thumbs lg:hidden">
-                                        <div class="swiper-wrapper" style="align-items: center">
-                                            <div class="swiper-slide">
-                                                <img src="{{ item.image_1.url }}"
-                                                     alt="slide 1"/>
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <img src="{{ item.image_2.url }}"
-                                                     alt="slide 2"/>
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <img src="{{ item.image_3.url }}"
-                                                     alt="slide 3"/>
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <img src="{{ item.image_4.url }}"
-                                                     alt="slide 4"/>
-                                            </div>
+                                 id="{{ item.id }}">
+                                <form action="{% url 'add-to-cart' item.id %}" method="post">
+                                    {% csrf_token %}
+                                    <div class="flex lg:grid lg:grid-cols-[70vh 1fr 0fr]">
+                                        <div class="close-modal-btn right-8 top-2 z-10"><i class="fa fa-times"></i>
                                         </div>
-                                    </div>
-
-                                    <div class="swiper-container gallery-top lg:w-full">
-                                        <div class="swiper-wrapper">
-                                            <div class="swiper-slide">
-                                                <img src="{{ item.image_1.url }}"
-                                                     alt="slide 1"/>
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <img src="{{ item.image_2.url }}"
-                                                     alt="slide 2"/>
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <img src="{{ item.image_3.url }}"
-                                                     alt="slide 3"/>
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <img src="{{ item.image_4.url }}"
-                                                     alt="slide 4"/>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="flex flex-col">
-                                        <div class="product-content-inner overflow-y-scroll">
-                                            <h1 class="text-xl font-bold">{{ item.title }}</h1>
-                                            <p class="text-2xs my-4">{{ item.price }} تومان </p>
-                                            <hr/>
-                                            {% for color in item.colors.all %}
-                                                <label>
-                                                    <input type="radio" name="modal-selected-color">
-                                                    {% if color.color == '#000000' %}
-                                                        <span style="background: {{ color.color }};color: white;border-radius: 3px;border: 1px solid black;font-size: small">{{ color.tag }}</span>
-                                                    {% else %}
-                                                        <span style="background: {{ color.color }};border-radius: 3px;border: 1px solid black;font-size: small">{{ color.tag }}</span>
-                                                    {% endif %}
-
-                                                </label>
-
-                                            {% endfor %}
-
-                                            <div class="modal-product-size flex my-4">
-                                                {% for size in item.sizes.all %}
-                                                    <label>
-                                                        <input type="radio" name="type-clothe"/>
-                                                        <span>{{ size.name }}</span>
-                                                    </label>
-                                                {% endfor %}
-
-
-                                            </div>
-                                            <button class="text-blue-500 underline text-sm" data-modal="sizeGuideModal"
-                                                    onclick="showModal(event)"><i
-                                                    class="fa fa-ruler text-xl text-gray-900 pointer-events-none"></i>راهنمای
-                                                سایز
-                                            </button>
-                                            <hr class="mt-6"/>
-                                            <div>
-                                                <button class="accordion-btn btn w-full inline-block flex justify-between p-4 py-8">
-                                                    لباس<i
-                                                        class="fa fa-angle-down"></i></button>
-                                                <div class="acc-panel transition-all">
-                                                    <div class="p-6 pt-2 text-2xs">
-                                                        <p>پیراهن آستین بلند مردانه، دارای یقه معمولی</p>
-
-                                                        <p>
-                                                            مدل با قد 185 سانتی‌متر و وزن 75 کیلوگرم سایز M را پوشیده
-                                                            است
-                                                        </p>
-                                                        <p>
-                                                            با توجه به تفاوت نمایش رنگ‌ها در صفحه نمایش دستگاه‌های
-                                                            مختلف،
-                                                            رنگ محصولات در تصویر تا 20% با واقعیت متفاوت خواهد بود
-                                                        </p>
-
-                                                        <p>پیراهن آستین بلند مردانه، دارای یقه معمولی</p>
-
-                                                        <p>
-                                                            مدل با قد 185 سانتی‌متر و وزن 75 کیلوگرم سایز M را پوشیده
-                                                            است
-                                                        </p>
-                                                        <p>
-                                                            با توجه به تفاوت نمایش رنگ‌ها در صفحه نمایش دستگاه‌های
-                                                            مختلف،
-                                                            رنگ محصولات در تصویر تا 20% با واقعیت متفاوت خواهد بود
-                                                        </p>
-
-                                                        <p>پیراهن آستین بلند مردانه، دارای یقه معمولی</p>
-
-                                                        <p>
-                                                            مدل با قد 185 سانتی‌متر و وزن 75 کیلوگرم سایز M را پوشیده
-                                                            است
-                                                        </p>
-                                                        <p>
-                                                            با توجه به تفاوت نمایش رنگ‌ها در صفحه نمایش دستگاه‌های
-                                                            مختلف،
-                                                            رنگ محصولات در تصویر تا 20% با واقعیت متفاوت خواهد بود
-                                                        </p>
-                                                    </div>
+                                        <div class="swiper-container gallery-thumbs lg:hidden">
+                                            <div class="swiper-wrapper" style="align-items: center">
+                                                <div class="swiper-slide">
+                                                    <img src="{{ item.image_1.url }}"
+                                                         alt="slide 1"/>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <img src="{{ item.image_2.url }}"
+                                                         alt="slide 2"/>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <img src="{{ item.image_3.url }}"
+                                                         alt="slide 3"/>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <img src="{{ item.image_4.url }}"
+                                                         alt="slide 4"/>
                                                 </div>
                                             </div>
-                                            <hr class="mb-4"/>
-                                            <a href="{% url 'product-detail' item.id %}"
-                                               class="my-4 w-full btn btn--md btn--secondary">مشاهده تمامی
-                                                اطلاعات محصول</a>
                                         </div>
 
-                                        <a href="#" class="btn btn--md btn--tertiary w-full inline-block">افزودن به سبد
-                                            خرید</a>
+                                        <div class="swiper-container gallery-top lg:w-full">
+                                            <div class="swiper-wrapper">
+                                                {#                                            {% for img in imags %}#}
+                                                {#                                                {% if img.post.id == item.id %}#}
+                                                {#                                                    <div class="swiper-slide">#}
+                                                {#                                                        <img src="{{ img.images.url }}"#}
+                                                {#                                                             alt="slide 1"/>#}
+                                                {#                                                    </div>#}
+                                                {#                                                {% endif %}#}
+                                                {#                                            {% endfor %}#}
+                                                <div class="swiper-slide">
+                                                    <img src="{{ item.image_1.url }}"
+                                                         alt="slide 1"/>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <img src="{{ item.image_2.url }}"
+                                                         alt="slide 2"/>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <img src="{{ item.image_3.url }}"
+                                                         alt="slide 3"/>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <img src="{{ item.image_4.url }}"
+                                                         alt="slide 4"/>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="flex flex-col">
+                                            <div class="product-content-inner overflow-y-scroll">
+                                                <h1 class="text-xl font-bold">{{ item.title }}</h1>
+                                                <p class="text-2xs my-4">{{ item.price }} تومان </p>
+                                                <hr/>
+                                                {% for color in item.colors.all %}
+                                                    <label>
+                                                        <input type="radio" name="color" value="{{ color.tag }}">
+                                                        {% if color.color == '#000000' %}
+                                                            <span style="background: {{ color.color }};color: white;border-radius: 3px;border: 1px solid black;font-size: small">{{ color.tag }}</span>
+                                                        {% else %}
+                                                            <span style="background: {{ color.color }};border-radius: 3px;border: 1px solid black;font-size: small">{{ color.tag }}</span>
+                                                        {% endif %}
+
+                                                    </label>
+
+                                                {% endfor %}
+
+                                                <div class="modal-product-size flex my-4">
+                                                    {% for size in item.sizes.all %}
+                                                        <label>
+                                                            <input type="radio" name="size" value="{{ size.name }}"/>
+                                                            <span>{{ size.name }}</span>
+                                                        </label>
+                                                    {% endfor %}
+
+
+                                                </div>
+                                                <button type="button" class="text-blue-500 underline text-sm"
+                                                        data-modal="sizeGuideModal"
+                                                        onclick="showModal(event)"><i
+                                                        class="fa fa-ruler text-xl text-gray-900 pointer-events-none"></i>راهنمای
+                                                    سایز
+                                                </button>
+                                                <hr class="mt-6"/>
+                                                <div>
+                                                    <button type="button"
+                                                            class="accordion-btn btn w-full inline-block flex justify-between p-4 py-8">
+                                                        جزئیات<i
+                                                            class="fa fa-angle-down"></i></button>
+                                                    <div class="acc-panel transition-all">
+                                                        <div class="p-6 pt-2 text-2xs">
+                                                            <p>پیراهن آستین بلند مردانه، دارای یقه معمولی</p>
+
+                                                            <p>
+                                                                مدل با قد 185 سانتی‌متر و وزن 75 کیلوگرم سایز M را
+                                                                پوشیده
+                                                                است
+                                                            </p>
+                                                            <p>
+                                                                با توجه به تفاوت نمایش رنگ‌ها در صفحه نمایش دستگاه‌های
+                                                                مختلف،
+                                                                رنگ محصولات در تصویر تا 20% با واقعیت متفاوت خواهد بود
+                                                            </p>
+
+                                                            <p>پیراهن آستین بلند مردانه، دارای یقه معمولی</p>
+
+                                                            <p>
+                                                                مدل با قد 185 سانتی‌متر و وزن 75 کیلوگرم سایز M را
+                                                                پوشیده
+                                                                است
+                                                            </p>
+                                                            <p>
+                                                                با توجه به تفاوت نمایش رنگ‌ها در صفحه نمایش دستگاه‌های
+                                                                مختلف،
+                                                                رنگ محصولات در تصویر تا 20% با واقعیت متفاوت خواهد بود
+                                                            </p>
+
+                                                            <p>پیراهن آستین بلند مردانه، دارای یقه معمولی</p>
+
+                                                            <p>
+                                                                مدل با قد 185 سانتی‌متر و وزن 75 کیلوگرم سایز M را
+                                                                پوشیده
+                                                                است
+                                                            </p>
+                                                            <p>
+                                                                با توجه به تفاوت نمایش رنگ‌ها در صفحه نمایش دستگاه‌های
+                                                                مختلف،
+                                                                رنگ محصولات در تصویر تا 20% با واقعیت متفاوت خواهد بود
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <hr class="mb-4"/>
+                                                <a href="{% url 'product-detail' item.id %}"
+                                                   class="my-4 w-full btn btn--md btn--secondary">مشاهده تمامی
+                                                    اطلاعات محصول</a>
+                                            </div>
+                                            <button type="submit">
+                                                <a class="btn btn--md btn--tertiary w-full inline-block">افزودن به
+                                                    سبد خرید</a>
+                                            </button>
+                                        </div>
                                     </div>
-                                </div>
+                                </form>
                             </div>
 
                             <div>
@@ -370,10 +547,18 @@
                                              onclick="document.location.href='http://hogonstyle.co/products/{{ item.id }}'"/>
 
 
-                                        <button class="btn btn--sm btn--primary product-btn lg:hidden flex items-center justify-center">
-                                            <span>مشاهده سریع &nbsp;</span>
-                                            <span class="flex mt-0.5"><i class="fa fa-search"></i></span>
-                                        </button>
+                                        {#                                        <a class="btn btn--sm btn--primary product-btn lg:hidden flex items-center justify-center"#}
+                                        {#                                           data-modal="{{ item.id }}"#}
+                                        {#                                           data-id="{{ item.id }}"#}
+                                        {#                                           data-target="#{{ item.id }}"#}
+                                        {#                                           onclick="showModal(event)">#}
+                                        {#                                            مشاهده سریع &nbsp;#}
+                                        {#                                            <i class="fa fa-search"></i>#}
+                                        {#                                        </a>#}
+                                        <a href="#" class="btn btn--md btn--primary block" data-modal="{{ item.id }}"
+                                           data-id="{{ item.id }}"
+                                           data-target="#{{ item.id }}"
+                                           onclick="showModal(event)">مشاهده سریع</a>
                                     </a>
                                     <div class="product-content">
                                         <a href="{% url 'product-detail' item.id %}"

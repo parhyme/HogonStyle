@@ -1853,7 +1853,7 @@ main.profile .sidebar-item.active, main.profile .sidebar-item:hover {
 .logo img {
     display: block;
     width: 100%;
-    max-width: 250px; /* change this to whatever you want the 'standard' size to be */
+    max-width: 60px; /* change this to whatever you want the 'standard' size to be */
     height: auto;
 }
 
@@ -3672,7 +3672,7 @@ main.weblog .blog-feed > div:not(:first-child) {
     }
 
     .logo {
-        max-width: 100%;
+        max-width: 60%;
         max-height: auto;
     }
 }
