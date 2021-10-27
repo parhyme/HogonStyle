@@ -1,6 +1,4 @@
-asgiref==3.4.1
-autopep8==1.5.7
-djangify==1.0.0
+asgiref==3.2.0
 Django==3.2.5
 django-colorfield==0.4.2
 django-colorful==1.3
